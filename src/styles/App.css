@@ -1,0 +1,115 @@
+*{
+  outline: red !important;
+}
+
+.yellow-background{
+  background: #f5db34 !important;
+}
+
+.light-grey-background{
+  background: #f1f1f1 !important;
+}
+
+.blue-background{
+  background: #3636c6 !important;
+}
+
+.blue-text{
+  color: #3636c6 !important;
+}
+
+.light-blue-text{
+  color: #6dcff6 !important;
+}
+
+.yellow-text{
+  color: #f5db34 !important;
+}
+
+.content-text{
+  font-size: 24px;
+}
+
+.caption-text{
+  font-size: 36px !important;
+  font-weight: bolder !important;
+}
+
+.logo-image{
+width: 150px;
+height: 150px;
+}
+
+.sm-icon-size{
+  width: 40px;
+  height: 40px;
+}
+
+.ml-4{
+  margin-left: 1.5rem;
+}
+
+.mr-4{
+  margin-right: 1.5rem;
+}
+
+.clear-button:hover{
+  background: transparent !important;
+}
+
+.large-text{
+  font-size: 64px;
+  font-weight: 800;
+}
+
+.carousel-caption-custom{
+  position: absolute;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.carousel-caption-left {
+  right: 55%;
+  bottom: 30%;
+  top: 30%;
+  left: 10%;
+  text-align: left;
+}
+
+.carousel-caption-right {
+  right: 10%;
+  bottom: 30%;
+  top: 30%;
+  left: 55%;
+  text-align: right;
+}
+
+.carousel-caption-bottom {
+  right: 15%;
+  bottom: 1.25rem;
+  left: 15%;
+  text-align: center;
+}
+
+.carousel-caption-top {
+  right: 15%;
+  top: 1.25rem;
+  left: 15%;
+  text-align: center;
+}
+
+.home-icons{
+  fill: #3636c6;
+  width: 80px;
+  height: 80px;
+  left: 10%;
+  right: 10%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.thumb-size{
+  object-fit: fill;
+  height: 100px;
+  width: 100px;
+}
