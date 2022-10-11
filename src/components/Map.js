@@ -1,31 +1,19 @@
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import React from "react";
-import clicks from "async";
+import * as React from "react";
 
+function Map({zoom, coords}) {
+    const ref = React.useRef(null);
+    const [map, setMap] = React.useState();
 
-function Map() {
+    React.useEffect(() => {
+        if (ref.current && !map) {
+            setMap(new window.google.maps.Map(ref.current, {
+                center: coords,
+                zoom: zoom
+            }));
+        }
+    }, [ref, map]);
 
-    const render = (status) => {
-        return <h1>{status}</h1>;
-    };
-
-    const Map: React.FC<> = () => {
-        const ref = React.useRef<HTMLDivElement>(null);
-        const [map, setMap] = React.useState<google.maps.Map>();
-
-        React.useEffect(() => {
-            if (ref.current && !map) {
-                setMap(new window.google.maps.Map(ref.current, {}));
-            }
-        }, [ref, map]);
-    }
-    return(
-        <div style={{ display: "flex", height: "100%" }}>
-            <Wrapper apiKey={"AIzaSyCxOqfnHMez82o9w7UclvObNLf7hlik72s"} render={render}>
-                <Map/>
-            </Wrapper>
-        </div>
-    );
+    return <div ref={ref} id="map" className="map map-container" />;
 }
 
 export default Map;

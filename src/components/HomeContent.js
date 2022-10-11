@@ -5,6 +5,7 @@ import file from '../res/file-earmark-text.svg'
 import person from '../res/person-check.svg'
 import PeopleCarousel from "./PeopleCarousel";
 import Map from "./Map";
+import MapWrapper from "./MapWrapper";
 
 function HomeContent() {
     return(
@@ -85,7 +86,9 @@ function HomeContent() {
 
             <Row className="mt-5 mb-5">
                 <p className="blue-text fw-bolder h1">Onde estamos</p>
-                <Map/>
+                <Container className="light-grey-background map-container">
+                    <MapWrapper/>
+                </Container>
             </Row>
         </div>
 

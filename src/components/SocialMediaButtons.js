@@ -13,13 +13,13 @@ function SocialMediaButtons() {
                 <Image
                     src={facebook_logo}
                     className="sm-icon-size img-fluid"
-                    onClick={()=> clickLink("https://www.facebook.com/")}/>
+                    onClick={()=> clickLink("https://www.facebook.com/Pacto.Direito.de.Migrar")}/>
             </Button>
             <Button variant={"outline-primary"} className="border-0 sm-icon-size clear-button">
                 <Image
                     src={instagram_logo}
                     className="sm-icon-size img-fluid"
-                    onClick={()=> clickLink("https://www.instagram.com/")}/>
+                    onClick={()=> clickLink("https://www.instagram.com/africadocoracaobr/")}/>
             </Button>
             <Button variant={"outline-primary"} className="border-0 sm-icon-size clear-button">
                 <Image
