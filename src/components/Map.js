@@ -11,9 +11,16 @@ function Map({zoom, coords}) {
                 zoom: zoom
             }));
         }
+        const marker = new window.google.maps.Marker({
+            position: coords,
+            label: "PDMIG",
+            map: map,
+        });
     }, [ref, map]);
 
-    return <div ref={ref} id="map" className="map map-container" />;
+    return(
+        <div ref={ref} id="map" className="map map-container"/>
+    )
 }
 
 export default Map;
