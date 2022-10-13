@@ -6,13 +6,8 @@ import Root from "./components/Root";
 import Header from "./components/Header";
 
 
-function App() {
-    return(
-        <div>
-            <Header/>
-            <Root/>
-        </div>
-    )
-}
+const App = () =>(
+    <Root/>
+)
 
 export default App;

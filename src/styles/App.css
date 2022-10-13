@@ -1,5 +1,5 @@
 *{
-  outline: red !important;
+  outline: 2px red !important;
 }
 
 .yellow-background{
@@ -12,6 +12,10 @@
 
 .blue-background{
   background: #3636c6 !important;
+}
+
+.white-background{
+  background: white !important;
 }
 
 .blue-text{
@@ -39,6 +43,16 @@
 width: 150px;
 height: 150px;
 }
+
+.nav-button{
+  height: 160px;
+  min-width: 150px;
+}
+
+.login-button{
+  width: 150px;
+}
+
 
 .sm-icon-size{
   width: 40px;

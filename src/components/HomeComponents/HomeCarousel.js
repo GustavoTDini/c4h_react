@@ -1,5 +1,5 @@
 import {Carousel} from "react-bootstrap";
-import handsImage from '../res/maos.png'
+import handsImage from '../../res/maos.png'
 
 
 function HomeCarousel() {

@@ -1,7 +1,7 @@
 import {Container} from "react-bootstrap";
-import HomeCarousel from "./HomeCarousel";
-import Footer from "./Footer";
-import HomeContent from "./HomeContent";
+import HomeCarousel from "./HomeComponents/HomeCarousel";
+import Footer from "./HomeComponents/Footer";
+import HomeContent from "./HomeComponents/HomeContent";
 
 
 function Home() {

@@ -1,5 +1,5 @@
 import {Col, Container, Row} from "react-bootstrap";
-import SocialMediaButtons from "./SocialMediaButtons";
+import SocialMediaButtons from "../SocialMediaButtons";
 
 const Footer = ()  => (
     <Row className="p-5 mt-5 light-grey-background">
