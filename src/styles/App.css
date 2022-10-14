@@ -49,10 +49,14 @@ height: 150px;
   min-width: 150px;
 }
 
+.doar-button{
+  height: 80px;
+  min-width: 150px;
+}
+
 .login-button{
   width: 150px;
 }
-
 
 .sm-icon-size{
   width: 40px;
@@ -136,4 +140,10 @@ height: 150px;
 
 .map{
   overflow: visible;
+}
+
+.large_image{
+  max-width: 350px;
+  max-height: 350px;
+  object-fit: contain;
 }

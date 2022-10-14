@@ -1,7 +1,7 @@
 import {Button, ButtonGroup, Image} from "react-bootstrap";
-import facebook_logo from '../res/facebook_logo.png'
-import twitter_logo from '../res/twitter_logo.png'
-import instagram_logo from '../res/instagram_logo.png'
+import facebook_logo from '../../res/facebook_logo.png'
+import twitter_logo from '../../res/twitter_logo.png'
+import instagram_logo from '../../res/instagram_logo.png'
 
 const clickLink = (link) => {
     window.open(link, '_blank');
