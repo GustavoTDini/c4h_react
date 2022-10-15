@@ -2,13 +2,12 @@ import {Button, Col, Container, Image, Navbar, Offcanvas} from "react-bootstrap"
 import logoImage from "../../res/logo.png";
 import menu from "../../res/menu.svg";
 import SocialMediaButtons from "./SocialMediaButtons";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import HeaderButtons from "./HeaderButtons";
 import OffScreenButtons from "./OffScreenButtons";
 
-function Header() {
+function Header({user}) {
     const [show, setShow] = useState(false)
-    const [user, setUser] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,7 +16,10 @@ function Header() {
         <Container>
             <Navbar expand="lg">
                 <Navbar.Collapse>
-                    <Col md={{span: 2, offset: 10}} className="d-flex justify-content-end">
+                    <Col md={2}>
+                        <h2>{user}</h2>
+                    </Col>
+                    <Col md={{span: 2, offset: 8}} className="d-flex justify-content-end">
                         <SocialMediaButtons/>
                     </Col>
                 </Navbar.Collapse>

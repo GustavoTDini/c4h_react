@@ -2,11 +2,18 @@ import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "re
 import logo from "../../res/logo2.png";
 import {useNavigate} from "react-router";
 
-function Login() {
+function Login({handleSetUser}) {
     const navigate = useNavigate();
     const handleClickRegister = () => {
         navigate("/register")
     }
+
+    const handleClickLogin = () => {
+        handleSetUser()
+        navigate("/")
+    }
+
+
 
     return(
         < Container className="mt-5">
@@ -24,7 +31,7 @@ function Login() {
                             <FloatingLabel controlId="password" label="Senha">
                                 <Form.Control type="password" placeholder="Senha" />
                             </FloatingLabel>
-                            <Button>Login</Button>
+                            <Button onClick={()=>handleClickLogin()}>Login</Button>
                             <Button onClick={()=>{handleClickRegister()}}>Cadastro</Button>
                         </Stack>
                     </Form>

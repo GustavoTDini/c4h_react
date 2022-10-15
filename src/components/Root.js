@@ -1,99 +1,88 @@
-
 import Login from "./ProfileComponents/Login";
-import {Router, RouterProvider} from "react-router";
+import {Route, Routes} from "react-router";
 import Home from "./Home";
-import {createBrowserRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import About from "./About";
 import Header from "./HeaderComponents/Header";
 import Construction from "./Construction";
 import Error from "./Error";
-import {Container} from "react-bootstrap";
 import Register from "./ProfileComponents/Register";
+import {useState} from "react";
+import Donation from "./ProfileComponents/Donation";
+import Signature from "./ProfileComponents/Signature";
+import Profile from "./ProfileComponents/Profile";
+import Admin from "./ProfileComponents/Admin";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element:<>
-            <Header/>
-            <Home/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/login",
-        element:<>
-            <Header/>
-            <Login/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/about",
-        element:<>
-            <Header/>
-            <About/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/projects",
-        element:<>
-            <Header/>
-            <Construction/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/blog",
-        element:<>
-            <Header/>
-            <Construction/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/reports",
-        element:<>
-            <Header/>
-            <Construction/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-    {
-        path: "/register",
-        element:<>
-            <Header/>
-            <Register/>
-        </>,
-        errorElement:<>
-            <Header/>
-            <Error/>
-        </>
-    },
-]);
 
 function Root() {
-    return(<div>
-            <RouterProvider router={router}/>
-        </div>
+    const [user, setUser] = useState(false)
+
+    function handleSetUser() {
+        console.log(user)
+        setUser(!user);
+    }
+
+    return(
+            <BrowserRouter>
+                <Header user={user}/>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Home />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/login"
+                        element={<Login handleSetUser={handleSetUser} />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/about"
+                        element={<About />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/register"
+                        element={<Register />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/reports"
+                        element={<Construction />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/projects"
+                        element={<Construction />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/blog"
+                        element={<Construction />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/donation"
+                        element={<Donation />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/signature"
+                        element={<Signature />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/profile"
+                        element={<Profile />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/admin"
+                        element={<Admin />}
+                        errorElement={<Error/>}
+                    />
+                </Routes>
+            </BrowserRouter>
     );
 
 }

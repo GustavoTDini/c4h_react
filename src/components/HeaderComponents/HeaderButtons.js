@@ -6,7 +6,6 @@ function HeaderButtons({user}) {
     const buttonClass = className + " nav-button"
     const loginClassName = buttonClass + " yellow-background login-button"
     const yellowClassName = className + " yellow-background doar-button"
-    console.log(user)
 
     return (
         <Navbar.Collapse className="justify-content-between">
@@ -16,8 +15,8 @@ function HeaderButtons({user}) {
             <NavButton className ={buttonClass} label={"Blog"} location={"/blog"} variant={"outline-primary"}/>
             <NavButton className ={buttonClass} label={"Relatórios"} location={"/reports"} variant={"outline-primary"}/>
             {user? <Stack direction={"vertical"} gap={2} className="mx-5">
-                    <NavButton className={yellowClassName} label={"Perfil"} location={"/perfil"}/>
-                    <NavButton className={yellowClassName} label={"Doe Agora"} location={"/doacao"}/>
+                    <NavButton className={yellowClassName} label={"Perfil"} location={"/profile"}/>
+                    <NavButton className={yellowClassName} label={"DOE AGORA"} location={"/donation"}/>
                 </Stack>:
                 <NavButton className={loginClassName} label={"Login"} location={"/login"}/>}
                 </Navbar.Collapse>

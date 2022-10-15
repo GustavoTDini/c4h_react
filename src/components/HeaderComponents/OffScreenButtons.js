@@ -14,7 +14,7 @@ function OffScreenButtons({user}) {
             <NavButton className ={className} label={"Relatórios"} location={"/reports"} variant={"outline-primary"}/>
             {user? <Stack direction={"vertical"} gap={2} className="d-flex justify-content-center">
                     <NavButton className={loginClassName} label={"Perfil"} location={"/perfil"}/>
-                    <NavButton className={loginClassName} label={"Doe Agora"} location={"/doacao"}/>
+                    <NavButton className={loginClassName} label={"DOE AGORA"} location={"/doacao"}/>
                 </Stack>:
                 <NavButton className={loginClassName} label={"Login"} location={"/login"}/>}
         </Stack>
