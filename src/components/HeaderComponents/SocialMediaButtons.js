@@ -8,7 +8,7 @@ const clickLink = (link) => {
 }
 
 function SocialMediaButtons() {
-    return(<ButtonGroup className="border-0 d-flex w-75">
+    return(<ButtonGroup className="border-0 w-75 justify-content-end">
             <Button variant={"outline-primary"} className="border-0 sm-icon-size clear-button">
                 <Image
                     src={facebook_logo}

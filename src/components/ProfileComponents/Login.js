@@ -19,7 +19,7 @@ function Login({handleSetUser}) {
         < Container className="mt-5">
             <Row className="mt-5 justify-content-around">
                 <Col md={2}>
-                    <Image className="m-auto" alt="Imagem Construção" src={logo} fluid="lg"/>
+                    <Image className="m-auto align-self-center login-image" alt="Imagem logo" src={logo} fluid="md"/>
                     <h1 className="text-center blue-text fw-bolder align-items-center m-auto">Login</h1>
                 </Col>
                 <Col md={8}>

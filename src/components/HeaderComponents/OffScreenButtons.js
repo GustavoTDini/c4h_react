@@ -6,7 +6,7 @@ function OffScreenButtons({user}) {
     const loginClassName = className + " yellow-background"
 
     return (
-        <Stack direction="vertical" className="d-flex justify-content-center" gap={2}>
+        <Stack direction="vertical" className="justify-content-center d-md-flex d-lg-none" gap={2}>
             <NavButton className ={className} label={"Home"} location={"/"} variant={"outline-primary"}/>
             <NavButton className ={className} label={"Sobre"} location={"/about"} variant={"outline-primary"}/>
             <NavButton className ={className} label={"Projetos"} location={"/projects"} variant={"outline-primary"}/>

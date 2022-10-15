@@ -44,9 +44,28 @@ width: 150px;
 height: 150px;
 }
 
-.nav-button{
+@media (min-width: 1200px) {
+  .nav-button{
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide-header-buttons{
+    visibility:hidden;
+    height: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-image{
+    display: block;
+    width: 200px;
+  }
+}
+
+.nav-button {
   height: 160px;
-  min-width: 150px;
 }
 
 .doar-button{
@@ -155,4 +174,9 @@ height: 150px;
 
 .list-height{
   height: 250px;
+}
+
+.profile-button-group{
+  width: 150px;
+  flex-grow: 0 !important;
 }

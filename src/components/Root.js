@@ -12,6 +12,7 @@ import Donation from "./ProfileComponents/Donation";
 import Signature from "./ProfileComponents/Signature";
 import Profile from "./ProfileComponents/Profile";
 import Admin from "./ProfileComponents/Admin";
+import Blogs from "./BlogComponents/Blogs";
 
 
 function Root() {
@@ -58,7 +59,7 @@ function Root() {
                     />
                     <Route
                         path="/blog"
-                        element={<Construction />}
+                        element={<Blogs />}
                         errorElement={<Error/>}
                     />
                     <Route
