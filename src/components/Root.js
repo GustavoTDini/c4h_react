@@ -19,7 +19,6 @@ function Root() {
     const [user, setUser] = useState(false)
 
     function handleSetUser() {
-        console.log(user)
         setUser(!user);
     }
 

@@ -13,8 +13,13 @@ import {
 } from "react-bootstrap";
 import medal from "../../res/certificado.png";
 import {useState} from "react";
+import DonationChart from "./DonationChart";
 
 function Admin() {
+    const [ano, setAno] = useState(null)
+    const [mes, setMes] = useState(null)
+
+
     const meses = [
         {"nome":"Janeiro",
             "numero": 1},
@@ -42,6 +47,22 @@ function Admin() {
             "numero": 12},
     ]
     const anos = [2022, 2023, 2024, 2025]
+
+    useState(()=>{
+        setAno(anos[0])
+        setMes(meses[0].nome)
+    })
+
+    const selectMes = (e) =>{
+        console.log(e)
+        setMes(e)
+    }
+
+    const selectAno = (e) =>{
+        setAno(e)
+    }
+
+
 
     return(
         < Container className="mt-5 mb-2">
@@ -96,31 +117,38 @@ function Admin() {
                     <Button className="w-100">Alterar</Button>
                 </Col>
                 <Col md={4}>
-                    <h2 className="blue-text mt-3 text-center">Verificar Total de Doações por Mês</h2>
+                    <h2 className="blue-text mt-3 text-center">Doações por Mês</h2>
                     <Button className="w-100" size="lg">Verificar</Button>
                     <Stack className="justify-content-between mt-2" direction="horizontal">
-                        <InputGroup className="mb-3">
+                        <InputGroup className="mb-3 w-auto">
                             <InputGroup.Text id="basic-addon1">Mês</InputGroup.Text>
                             <DropdownButton
                                 variant="outline-secondary"
-                                title="Dropdown"
+                                title={mes}
                                 id="input-group-dropdown-2"
-                                align="end">
+                                align="end"
+                                onSelect={selectMes}
+                            >
                                 {meses.map((mes)=>(
-                                    <Dropdown.Item>{mes.nome}</Dropdown.Item>
+                                    <Dropdown.Item
+                                        eventKey={mes.nome}
+                                    >{mes.nome}</Dropdown.Item>
                                 ))}
                             </DropdownButton>
                         </InputGroup>
-                        <InputGroup className="mb-3">
+                        <InputGroup className="mb-3 w-auto">
                             <InputGroup.Text id="basic-addon1">Ano</InputGroup.Text>
                             <DropdownButton
                                 variant="outline-secondary"
-                                title="Dropdown"
+                                title={ano}
                                 id="input-group-dropdown-2"
-                                align="end">
-
+                                align="end"
+                                onSelect={(e) => selectAno(e)}
+                            >
                                 {anos.map((ano)=>(
-                                    <Dropdown.Item>{ano}</Dropdown.Item>
+                                    <Dropdown.Item
+                                    eventKey={ano}
+                                    >{ano}</Dropdown.Item>
                                 ))}
                             </DropdownButton>
                         </InputGroup>
@@ -129,9 +157,8 @@ function Admin() {
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-end">
-                <Image/>
+                <DonationChart/>
             </Row>
-
             <Row className="mt-5 justify-content-end">
                 <Col md="3">
                     <Button className="w-100 mb-3" size="lg">Adicionar Blog</Button>

@@ -25,7 +25,7 @@ function SocialMediaButtons() {
                 <Image
                     src={twitter_logo}
                     className="sm-icon-size img-fluid"
-                    onClick={()=> clickLink("https://www.twitter.com/")}/>
+                    onClick={()=> clickLink("https://twitter.com/pdmig_africora")}/>
             </Button>
         </ButtonGroup>
     );

@@ -180,3 +180,9 @@ height: 150px;
   width: 150px;
   flex-grow: 0 !important;
 }
+
+.blog-card-text{
+  white-space: break-spaces;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

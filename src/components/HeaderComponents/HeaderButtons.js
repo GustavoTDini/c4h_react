@@ -8,7 +8,7 @@ function HeaderButtons({user}) {
     const yellowClassName = loginClassName + " doar-button"
 
     return (
-            <Container className="justify-content-between d-md-none d-lg-flex" fluid>
+            <Container className="justify-content-between d-md-none d-lg-flex d-sm-none d-none" fluid>
                 <NavButton className ={buttonClass} label={"Home"} location={"/"} variant={"outline-primary"}/>
                 <NavButton className ={buttonClass} label={"Sobre"} location={"/about"} variant={"outline-primary"}/>
                 <NavButton className ={buttonClass} label={"Projetos"} location={"/projects"} variant={"outline-primary"}/>

@@ -2,6 +2,8 @@ import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "re
 import medal from "../../res/certificado.png";
 import {useState} from "react";
 import {useNavigate} from "react-router";
+import AddPhone from "./AddPhone";
+import AddAdress from "./AddAdress";
 
 function Profile() {
     const CPF = "CPF";
@@ -14,6 +16,14 @@ function Profile() {
     const [doacao, setDoacao] = useState(true)
     const [assina, setAssina] = useState(true)
     const [admin, setAdmin] = useState(true)
+    const [showPhone, setShowPhone] = useState(false);
+    const [showAdress, setShowAdress] = useState(false);
+
+    const handleClosePhone = () => setShowPhone(false);
+    const handleShowPhone = () => setShowPhone(true);
+
+    const handleCloseAdress = () => setShowAdress(false);
+    const handleShowAdress = () => setShowAdress(true);
 
     const navigate = useNavigate();
 
@@ -65,21 +75,21 @@ function Profile() {
                 <Col md={8}>
                     <Stack className="justify-content-between" direction="horizontal">
                         <Form.Label className="blue-text h4">Endereços:</Form.Label>
-                        <Button className="w-50">Adicionar Endereço</Button>
+                        <Button className="w-50" onClick={()=> handleShowAdress()}>Adicionar Endereço</Button>
                     </Stack>
                 </Col>
             </Row>
-            <Row className="mt-2 justify-content-start light-grey-background" style={{height: "100px"}}>
+            <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
             </Row>
             <Row className="mt-5 justify-content-start">
                 <Col md={8}>
                     <Stack className="justify-content-between" direction="horizontal">
                         <Form.Label className="blue-text h4">Telefones:</Form.Label>
-                        <Button className="w-50">Adicionar Telefone</Button>
+                        <Button className="w-50" onClick={()=> handleShowPhone()}>Adicionar Telefone</Button>
                     </Stack>
                 </Col>
             </Row>
-            <Row className="mt-2 justify-content-start light-grey-background" style={{height: "100px"}}>
+            <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
             </Row>
             <Row className="mt-5 justify-content-start">
                 <Col md="3">
@@ -96,6 +106,8 @@ function Profile() {
                         <Button className="w-100" size="lg" onClick={() => handleClickAdmin()}>Administrador</Button>
                     </Col>:<div/>}
             </Row>
+            <AddPhone show={showPhone} handleClose={handleClosePhone}/>
+            <AddAdress show={showAdress} handleClose={handleCloseAdress}/>
         </Container>
     );
 }
