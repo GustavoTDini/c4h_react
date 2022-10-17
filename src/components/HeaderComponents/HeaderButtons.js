@@ -12,7 +12,7 @@ function HeaderButtons({user}) {
                 <NavButton className ={buttonClass} label={"Home"} location={"/"} variant={"outline-primary"}/>
                 <NavButton className ={buttonClass} label={"Sobre"} location={"/about"} variant={"outline-primary"}/>
                 <NavButton className ={buttonClass} label={"Projetos"} location={"/projects"} variant={"outline-primary"}/>
-                <NavButton className ={buttonClass} label={"Blog"} location={"/blog"} variant={"outline-primary"}/>
+                <NavButton className ={buttonClass} label={"Blog"} location={"/blogs"} variant={"outline-primary"}/>
                 <NavButton className ={buttonClass} label={"Relatórios"} location={"/reports"} variant={"outline-primary"}/>
                 {user?
                     <Stack direction={"vertical"} gap={2} className="profile-button-group">

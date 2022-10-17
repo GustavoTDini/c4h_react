@@ -2,11 +2,17 @@ import {Card, CardGroup, CardImg, Col, Stack} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
 import {useEffect} from "react";
 import blogImage from "../../res/blogImage.jpg";
+import {meses} from "../../HelperFunctions";
+import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 
 function BlogCard({blog}) {
+    const navigate = useNavigate();
 
-    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    const handleClickAddBLog = ()=>{
+        navigate("/blog/" + blog.id)
+    }
 
     return(
         <Col md="4" className="mb-5">
@@ -21,6 +27,7 @@ function BlogCard({blog}) {
                     <CardImg src={blog.image}></CardImg>
                     <h2 className="mt-3 light-blue-text">{blog.titulo}</h2>
                     <p className="blog-card-text">{blog.texto.slice(0,200) + " ..."}</p>
+                    <p><Link to={"/blog/#" + blog.id}>Ver mais</Link></p>
                     {blog.temas.map((tema) =>(
                         <p className="light-grey-background border-1 m-1 p-1">{tema}</p>
                     ))}

@@ -13,6 +13,8 @@ import Signature from "./ProfileComponents/Signature";
 import Profile from "./ProfileComponents/Profile";
 import Admin from "./ProfileComponents/Admin";
 import Blogs from "./BlogComponents/Blogs";
+import AddBlog from "./ProfileComponents/AddBlog";
+import BlogDetail from "./BlogComponents/BlogDetail";
 
 
 function Root() {
@@ -57,7 +59,7 @@ function Root() {
                         errorElement={<Error/>}
                     />
                     <Route
-                        path="/blog"
+                        path="/blogs"
                         element={<Blogs />}
                         errorElement={<Error/>}
                     />
@@ -81,10 +83,19 @@ function Root() {
                         element={<Admin />}
                         errorElement={<Error/>}
                     />
+                    <Route
+                        path="/addBlog"
+                        element={<AddBlog />}
+                        errorElement={<Error/>}
+                    />
+                    <Route
+                        path="/blog/*"
+                        element={<BlogDetail />}
+                        errorElement={<Error/>}
+                    />
                 </Routes>
             </BrowserRouter>
     );
-
 }
 
 export default Root;

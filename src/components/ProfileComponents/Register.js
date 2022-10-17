@@ -1,7 +1,7 @@
 import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
 import {useState} from "react";
 
-function Login() {
+function Register() {
     const CPF = "CPF";
     const CNPJ = "CNPJ"
     const PF = "PF"
@@ -69,4 +69,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

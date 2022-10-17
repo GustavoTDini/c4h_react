@@ -10,7 +10,7 @@ function OffScreenButtons({user}) {
             <NavButton className ={className} label={"Home"} location={"/"} variant={"outline-primary"}/>
             <NavButton className ={className} label={"Sobre"} location={"/about"} variant={"outline-primary"}/>
             <NavButton className ={className} label={"Projetos"} location={"/projects"} variant={"outline-primary"}/>
-            <NavButton className ={className} label={"Blog"} location={"/blog"} variant={"outline-primary"}/>
+            <NavButton className ={className} label={"Blog"} location={"/blogs"} variant={"outline-primary"}/>
             <NavButton className ={className} label={"Relatórios"} location={"/reports"} variant={"outline-primary"}/>
             {user? <Stack direction={"vertical"} gap={2} className="d-flex justify-content-center">
                     <NavButton className={loginClassName} label={"Perfil"} location={"/perfil"}/>

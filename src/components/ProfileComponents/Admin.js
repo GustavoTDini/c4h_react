@@ -14,10 +14,12 @@ import {
 import medal from "../../res/certificado.png";
 import {useState} from "react";
 import DonationChart from "./DonationChart";
+import {useNavigate} from "react-router";
 
 function Admin() {
     const [ano, setAno] = useState(null)
     const [mes, setMes] = useState(null)
+    const navigate = useNavigate();
 
 
     const meses = [
@@ -60,6 +62,10 @@ function Admin() {
 
     const selectAno = (e) =>{
         setAno(e)
+    }
+
+    const handleClickAddBLog = ()=>{
+        navigate("/addBlog")
     }
 
 
@@ -161,7 +167,7 @@ function Admin() {
             </Row>
             <Row className="mt-5 justify-content-end">
                 <Col md="3">
-                    <Button className="w-100 mb-3" size="lg">Adicionar Blog</Button>
+                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Blog</Button>
                 </Col>
                 <Col md="3">
                     <Button className="w-100 mb-3" size="lg">Sair</Button>
