@@ -1,9 +1,8 @@
-import {Button, Container, Form, Image, InputGroup, Pagination, Row} from "react-bootstrap";
+import {Button, Container, Form, Image, InputGroup, Row} from "react-bootstrap";
 import searchIcon from "../../res/search.svg"
 import Footer from "../HomeComponents/Footer";
 import BlogCard from "./BlogCard";
 import blogImage from "../../res/blogImage.jpg";
-import {useEffect} from "react";
 import * as React from "react";
 import BlogPages from "./BlogPages";
 import {spliceArray} from "../../HelperFunctions";
@@ -34,7 +33,7 @@ function Blogs() {
     React.useEffect(() => {
         setBlogsTotal(blogs.length);
         setPages(Math.round(blogsTotal/9));
-    }, [blogsTotal, pages, currentPage]);
+    }, [blogsTotal, pages]);
 
     return(<Container className="mt-5">
             <Row className="mt-5 mb-5 px-4 border-light">

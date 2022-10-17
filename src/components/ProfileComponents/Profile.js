@@ -1,9 +1,10 @@
-import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, FloatingLabel, Form, Image, ListGroup, Row, Stack} from "react-bootstrap";
 import medal from "../../res/certificado.png";
 import {useState} from "react";
 import {useNavigate} from "react-router";
 import AddPhone from "./AddPhone";
 import AddAdress from "./AddAdress";
+import * as React from "react";
 
 function Profile() {
     const CPF = "CPF";
@@ -68,6 +69,17 @@ function Profile() {
                         {pessoa === PF?<FloatingLabel controlId="url" label="Date de Nascimento">
                                 <Form.Control type="date"/>
                         </FloatingLabel>:<div/>}
+                    </Stack>
+                </Col>
+                <Col md={4}>
+                    <Stack className="w-100 list-height p-0 mb-5" gap={4}>
+                        <h2 className="blue-text mt-3">Minhas Doações</h2>
+                        <Container className="list-scroll list-height">
+                            <ListGroup>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            </ListGroup>
+                        </Container>
                     </Stack>
                 </Col>
             </Row>

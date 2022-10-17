@@ -173,7 +173,16 @@ height: 150px;
 }
 
 .list-height{
-  height: 250px;
+  height: 400px;
+}
+
+.list-height-large{
+  height: 600px;
+}
+
+.list-scroll{
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .profile-button-group{

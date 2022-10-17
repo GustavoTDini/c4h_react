@@ -27,7 +27,7 @@ function BlogCard({blog}) {
                     <CardImg src={blog.image}></CardImg>
                     <h2 className="mt-3 light-blue-text">{blog.titulo}</h2>
                     <p className="blog-card-text">{blog.texto.slice(0,200) + " ..."}</p>
-                    <p><Link to={"/blog/#" + blog.id}>Ver mais</Link></p>
+                    <p><Link to={"/blog/#" + blog.id} p>Ver mais</Link></p>
                     {blog.temas.map((tema) =>(
                         <p className="light-grey-background border-1 m-1 p-1">{tema}</p>
                     ))}

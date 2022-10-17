@@ -3,18 +3,17 @@ import {
     Col,
     Container, Dropdown,
     DropdownButton,
-    FloatingLabel,
     Form,
     Image,
-    InputGroup,
+    InputGroup, ListGroup,
     Row,
-    Stack,
-    Table
+    Stack
 } from "react-bootstrap";
-import medal from "../../res/certificado.png";
 import {useState} from "react";
 import DonationChart from "./DonationChart";
 import {useNavigate} from "react-router";
+import searchIcon from "../../res/search.svg";
+import * as React from "react";
 
 function Admin() {
     const [ano, setAno] = useState(null)
@@ -77,52 +76,56 @@ function Admin() {
                     <h1 className="light-blue-text fw-bold text-start">ADMINISTRADOR</h1>
                 </Col>
             </Row>
-            <Row className="mt-3 mb-2 justify-content-lg-start">
+            <Row className="mt-3 justify-content-lg-start h-auto">
                 <Col md={4}>
-                    <h2 className="blue-text mt-3">Usuários</h2>
-                    <Container className="w-100 list-height p-0">
-                        <Table striped bordered hover>
-                            <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Código</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>Gustavo</th>
-                                <th>32598487893</th>
-                            </tr>
-                            </tbody>
-                        </Table>
-                    </Container>
-                    <Stack direction="horizontal" gap={2}>
-                        <Button className="w-75">Alterar</Button>
-                        <Button className="w-75">Apagar</Button>
+                    <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
+                        <h2 className="blue-text">Usuários</h2>
+                        <InputGroup>
+                            <Form.Control/>
+                            <Button variant="outline-primary">
+                                <Image src={searchIcon} alt="icon de lupa" className="mr-4"/>
+                                Buscar
+                            </Button>
+                        </InputGroup>
+                        <Container className="list-scroll list-height-large">
+                            <ListGroup>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+
+                            </ListGroup>
+                        </Container>
+                        <Stack direction="horizontal" gap={2}>
+                            <Button className="w-75">Alterar</Button>
+                            <Button className="w-75">Apagar</Button>
+                        </Stack>
+                        <Button className="w-100">Definir como Administrador</Button>
                     </Stack>
-                    <Button className="w-100 mt-3">Definir como Administrador</Button>
                 </Col>
                 <Col md={4}>
-                    <h2 className="blue-text mt-3">Doações</h2>
-                    <Container className="w-100 list-height p-0">
-                        <Table striped bordered hover>
-                            <thead>
-                            <tr>
-                                <th>Dia</th>
-                                <th>Valor</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th>R$ 100,00</th>
-                                <th>15/10/2022</th>
-                            </tr>
-                            </tbody>
-                        </Table>
-                    </Container>
-                    <Button className="w-100">Alterar</Button>
+                    <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
+                        <h2 className="blue-text mt-3">Doações</h2>
+                        <Container className="list-scroll list-height-large">
+                            <ListGroup>
+                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
+                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            </ListGroup>
+                        </Container>
+                        <Button className="w-100">Verificar Doação</Button>
+                    </Stack>
+
                 </Col>
                 <Col md={4}>
+                    <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
                     <h2 className="blue-text mt-3 text-center">Doações por Mês</h2>
                     <Button className="w-100" size="lg">Verificar</Button>
                     <Stack className="justify-content-between mt-2" direction="horizontal">
@@ -160,9 +163,10 @@ function Admin() {
                         </InputGroup>
                     </Stack>
                     <h4 className="blue-text text-center">Em Janeiro de 2022, foram doados no total R$ 1.500,00</h4>
+                    </Stack>
                 </Col>
             </Row>
-            <Row className="mt-5 justify-content-end">
+            <Row className="justify-content-end">
                 <DonationChart/>
             </Row>
             <Row className="mt-5 justify-content-end">
