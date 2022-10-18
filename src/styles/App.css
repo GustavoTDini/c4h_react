@@ -1,7 +1,3 @@
-*{
-  outline: 2px red !important;
-}
-
 .yellow-background{
   background: #f5db34 !important;
 }
@@ -173,7 +169,7 @@ height: 150px;
 }
 
 .list-height{
-  height: 400px;
+  height: 300px;
 }
 
 .list-height-large{
@@ -194,4 +190,9 @@ height: 150px;
   white-space: break-spaces;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.icon-image{
+  width: 50px;
+  height: 50px;
 }

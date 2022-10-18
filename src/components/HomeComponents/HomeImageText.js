@@ -1,5 +1,4 @@
 import {Col, Image} from "react-bootstrap";
-import file from "../../res/file-earmark-text.svg";
 
 
 const HomeImageText = ({imagem, titulo, texto}) =>(

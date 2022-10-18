@@ -1,5 +1,5 @@
 import NavButton from "./NavButton";
-import {Container, Navbar, Stack} from "react-bootstrap";
+import {Container, Stack} from "react-bootstrap";
 
 function HeaderButtons({user}) {
     const className = "border-0 blue-text fw-bold"
