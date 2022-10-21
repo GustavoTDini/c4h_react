@@ -1,9 +1,6 @@
 import {Card, CardGroup, CardImg, Col, Stack} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
-import {useEffect} from "react";
-import blogImage from "../../res/blogImage.jpg";
 import {meses} from "../../HelperFunctions";
-import {useNavigate} from "react-router";
 import {Link} from "react-router-dom";
 
 
@@ -19,13 +16,14 @@ function BlogCard({blog}) {
                     </Stack>
                 </CardHeader>
                 <CardGroup>
-                    <CardImg src={blog.image}></CardImg>
-                    <h2 className="mt-3 light-blue-text">{blog.titulo}</h2>
+                    <CardImg className="mb-3" src={blog.image}></CardImg>
+                    {blog.categorias.map((categoria) =>(
+                        <p  key={categoria.indexOf(categoria)}
+                            className="light-grey-background border-1 mx-2 px-2 pt-1 pb-1">{categoria}</p>
+                    ))}
+                    <h2 className="light-blue-text">{blog.titulo}</h2>
                     <p className="blog-card-text">{blog.texto.slice(0,200) + " ..."}</p>
                     <p><Link to={"/blog/" + blog.id}  state={{ blog: blog }}>Ver mais</Link></p>
-                    {blog.temas.map((tema) =>(
-                        <p className="light-grey-background border-1 m-1 p-1">{tema}</p>
-                    ))}
                 </CardGroup>
             </Card>
         </Col>

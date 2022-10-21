@@ -2,7 +2,7 @@ import Login from "./ProfileComponents/Login";
 import {Route, Routes} from "react-router";
 import Home from "./Home";
 import React from "react";
-import {BrowserRouter, createBrowserRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import About from "./About";
 import Header from "./HeaderComponents/Header";
 import Construction from "./Construction";
@@ -27,7 +27,6 @@ function Root() {
 
     return(
         <React.StrictMode>
-
              <BrowserRouter>
                  <Header user={user}/>
                  <Routes>

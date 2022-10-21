@@ -1,8 +1,7 @@
-import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
-import logo from "../../res/logo2.png";
+import {Button, Col, Container, Form, Row, Stack} from "react-bootstrap";
 import {useState} from "react";
 
-function Signature({handleSetUser}) {
+function Signature() {
     const [day, setDay] = useState(0)
     const [value, setValue] = useState(0)
 
@@ -11,7 +10,6 @@ function Signature({handleSetUser}) {
         currency: "BRL"
     })
     const dias = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
-
 
     return(
         < Container className="mt-5">

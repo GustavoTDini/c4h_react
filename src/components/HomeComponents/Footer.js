@@ -1,5 +1,8 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Image, Row} from "react-bootstrap";
+import heartIcon from "../../res/heart-fill.svg"
+import ReactIcon from "../../res/react-icon.svg"
 import SocialMediaButtons from "../HeaderComponents/SocialMediaButtons";
+import React from "react";
 
 const Footer = ()  => (
     <Row className="p-5 mt-5 light-grey-background">
@@ -15,6 +18,7 @@ const Footer = ()  => (
         <Col md={2}>
             <SocialMediaButtons/>
         </Col>
+        <p className="mt-4">Made with <Image className="footer-image" src={heartIcon} alt="Love"/> and <Image className="footer-image" src={ReactIcon} alt="React"/> by Turing Team </p>
     </Row>
 )
 

@@ -3,8 +3,9 @@ import medal from "../../res/certificado.png";
 import {useState} from "react";
 import {useNavigate} from "react-router";
 import AddPhone from "./AddPhone";
-import AddAdress from "./AddAdress";
+import AddAddress from "./AddAdress";
 import * as React from "react";
+import ChangePassword from "./ChangePassword";
 
 function Profile() {
     const CPF = "CPF";
@@ -18,13 +19,17 @@ function Profile() {
     const [assina, setAssina] = useState(true)
     const [admin, setAdmin] = useState(true)
     const [showPhone, setShowPhone] = useState(false);
-    const [showAdress, setShowAdress] = useState(false);
+    const [showAddress, setShowAddress] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleClosePhone = () => setShowPhone(false);
     const handleShowPhone = () => setShowPhone(true);
 
-    const handleCloseAdress = () => setShowAdress(false);
-    const handleShowAdress = () => setShowAdress(true);
+    const handleCloseAddress = () => setShowAddress(false);
+    const handleShowAddress = () => setShowAddress(true);
+
+    const handleClosePassword = () => setShowPassword(false);
+    const handleShowPassword = () => setShowPassword(true);
 
     const navigate = useNavigate();
 
@@ -41,7 +46,7 @@ function Profile() {
                 <Col md="4" className="mt-2 mb-2">
                     {assina?<div>
                         <h3 className="text-center">Assinatura programada</h3>
-                        <Button className="w-100" onClick={()=> handleShowPhone()}>Cancelar Assinatura</Button>
+                        <Button className="w-100">Cancelar Assinatura</Button>
                     </div>:<div/>}
                 </Col>
                 <Col md="4" className="mt-2 mb-2">
@@ -90,7 +95,7 @@ function Profile() {
                 <Col md={8}>
                     <Stack className="justify-content-between" direction="horizontal">
                         <Form.Label className="blue-text h4">Endereços:</Form.Label>
-                        <Button className="w-50" onClick={()=> handleShowAdress()}>Adicionar Endereço</Button>
+                        <Button className="w-50" onClick={()=> handleShowAddress()}>Adicionar Endereço</Button>
                     </Stack>
                 </Col>
             </Row>
@@ -108,7 +113,7 @@ function Profile() {
             </Row>
             <Row className="mt-5 justify-content-start">
                 <Col md="3" className="mt-2 mb-2">
-                    <Button className="w-100" size="lg">Alterar Senha</Button>
+                    <Button className="w-100" size="lg" onClick={()=> handleShowPassword()}>Alterar Senha</Button>
                 </Col>
                 <Col md="3" className="mt-2 mb-2">
                     <Button className="w-100" size="lg">Atualizar Dados</Button>
@@ -122,7 +127,8 @@ function Profile() {
                     </Col>:<div/>}
             </Row>
             <AddPhone show={showPhone} handleClose={handleClosePhone}/>
-            <AddAdress show={showAdress} handleClose={handleCloseAdress}/>
+            <AddAddress show={showAddress} handleClose={handleCloseAddress}/>
+            <ChangePassword show={showPassword} handleClose={handleClosePassword}/>
         </Container>
     );
 }

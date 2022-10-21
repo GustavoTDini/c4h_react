@@ -26,10 +26,10 @@ function Login({handleSetUser}) {
                     <Form className="mt-5 px-5">
                         <Stack direction="vertical" gap={5}>
                             <FloatingLabel controlId="login" label="Login">
-                                <Form.Control type="text" placeholder="Login" />
+                                <Form.Control type="text"/>
                             </FloatingLabel>
                             <FloatingLabel controlId="password" label="Senha">
-                                <Form.Control type="password" placeholder="Senha" />
+                                <Form.Control type="password" />
                             </FloatingLabel>
                             <Button onClick={()=>handleClickLogin()}>Login</Button>
                             <Button onClick={()=>{handleClickRegister()}}>Cadastro</Button>

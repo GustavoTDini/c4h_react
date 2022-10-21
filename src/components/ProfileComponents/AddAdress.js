@@ -1,7 +1,7 @@
 import {Button, FloatingLabel, Form, Modal, Stack} from "react-bootstrap";
 
 
-function AddAdress({show, handleClose}){
+function AddAddress({show, handleClose}){
 
     return(
         <Modal
@@ -56,4 +56,4 @@ function AddAdress({show, handleClose}){
     )
 }
 
-export default AddAdress
+export default AddAddress

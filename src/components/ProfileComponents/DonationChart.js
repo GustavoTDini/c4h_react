@@ -31,19 +31,20 @@ export const options = {
         },
         title: {
             display: true,
-            text: 'Chart.js Line Chart',
+            text: 'Doações por Mês',
         },
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'];
 
 export const data = {
     labels,
     datasets: [
         {
             fill: true,
-            label: 'Doações por mês',
+            label: 'Valor Total de Doações',
+            data: labels.map(() => Math.random()*2000),
             borderColor: 'rgb(53, 162, 235)',
             backgroundColor: 'rgba(53, 162, 235, 0.5)',
         },

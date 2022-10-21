@@ -49,16 +49,19 @@ function Register() {
                                 />
                             </div>
                             <FloatingLabel controlId="login" label="Login">
-                                <Form.Control type="text" placeholder="Login" />
+                                <Form.Control type="text" />
                             </FloatingLabel>
                             <FloatingLabel controlId="password" label="Senha">
-                                <Form.Control type="password" placeholder="Senha" />
+                                <Form.Control type="password" />
+                            </FloatingLabel>
+                            <FloatingLabel controlId="password2" label="Confirme a Senha">
+                                <Form.Control type="password" />
                             </FloatingLabel>
                             <FloatingLabel controlId="email" label="E-mail">
-                                <Form.Control type="text" placeholder="Senha" />
+                                <Form.Control type="text" />
                             </FloatingLabel>
                             <FloatingLabel controlId="code" label={code}>
-                                <Form.Control type="text" placeholder={code} />
+                                <Form.Control type="text" />
                             </FloatingLabel>
                             <Button className="yellow-background border-0 blue-text fw-bold" size="lg">Cadastrar</Button>
                         </Stack>

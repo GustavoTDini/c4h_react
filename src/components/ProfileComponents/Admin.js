@@ -171,6 +171,12 @@ function Admin() {
             </Row>
             <Row className="mt-5 justify-content-end">
                 <Col md="3">
+                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Relatórios</Button>
+                </Col>
+                <Col md="3">
+                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Ver Blogs</Button>
+                </Col>
+                <Col md="3">
                     <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Blog</Button>
                 </Col>
                 <Col md="3">

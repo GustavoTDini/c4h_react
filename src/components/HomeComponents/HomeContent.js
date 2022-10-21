@@ -1,6 +1,3 @@
-import {Button, Col, Container, Image, Row} from "react-bootstrap";
-import PeopleCarousel from "./PeopleCarousel";
-import MapWrapper from "./MapWrapper";
 import HomePrincipalBlock from "./HomePrincipalBlock";
 import HomeServicoBlock from "./HomeServicoBlock";
 import HomeColaboradoresBlock from "./HomeColaboradoresBlock";

@@ -1,5 +1,5 @@
 import NavButton from "./NavButton";
-import {Button, Navbar, Stack} from "react-bootstrap";
+import {Stack} from "react-bootstrap";
 
 function OffScreenButtons({user}) {
     const className = "border-0 blue-text fw-bold"
