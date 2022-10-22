@@ -35,6 +35,7 @@ function BlogCategories({position}){
                         onSelect={(e) => handleAddCategoria(e)}>
                         {categorias.map((categoria)=>(
                             <Dropdown.Item
+                                active={selecionadas.includes(categoria)}
                                 key={categorias.indexOf(categoria)}
                                 eventKey={categoria}
                             >{categoria}</Dropdown.Item>
@@ -65,6 +66,7 @@ function BlogCategories({position}){
                         onSelect={(e) => handleAddCategoria(e)}>
                         {categorias.map((categoria)=>(
                             <Dropdown.Item
+                                active={selecionadas.includes(categoria)}
                                 key={categorias.indexOf(categoria)}
                                 eventKey={categoria}
                             >{categoria}</Dropdown.Item>

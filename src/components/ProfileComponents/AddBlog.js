@@ -35,7 +35,7 @@ function Register() {
                                 </FloatingLabel>
                                 <Button className="border-0 fw-bold mt-4">Adicionar Categoria</Button>
                             </div>
-                            <div>
+                            <div >
                                 <Form.Label>Conteúdo do Blog</Form.Label>
                                 <SunEditor
                                     setOptions={{
@@ -49,26 +49,31 @@ function Register() {
                                         "mode": "classic",
                                         "rtl": false,
                                         "katex": "window.katex",
+                                        "showPathLabel": false,
+                                        "charCounter": false,
+                                        "width": "auto",
+                                        "height": "auto",
                                         "font": [
-                                        "Arial",
-                                        "tahoma",
-                                        "Courier New,Courier"
+                                            "Arial",
+                                            "tahoma",
+                                            "Courier New,Courier"
                                         ],
                                         "fontSize": [
-                                        8,
-                                        10,
-                                        14,
-                                        18,
-                                        24,
-                                        36
+                                            8,
+                                            10,
+                                            14,
+                                            18,
+                                            24,
+                                            36,
+                                            48
                                         ],
                                         "formats": [
-                                        "p",
+                                            "p",
                                             "blockquote",
                                             "h1",
                                             "h2",
                                             "h3",
-                                            "h4",
+                                            "h4"
                                         ],
                                         "colorList": [
                                             [
@@ -98,41 +103,48 @@ function Register() {
                                         ],
                                         "imageGalleryUrl": "https://etyswjpn79.execute-api.ap-northeast-1.amazonaws.com/suneditor-demo",
                                         "videoFileInput": false,
+                                        "audioFileInput": true,
                                         "tabDisable": false,
+                                        "linkTargetNewWindow": true,
+                                        "paragraphStyles": [
+                                            "spaced",
+                                            {
+                                                "name": "Box",
+                                                "class": "__se__customClass"
+                                            }
+                                        ],
+                                        "mediaAutoSelect": false,
                                         "buttonList": [
-                                        [
-                                        "undo",
-                                        "redo",
-                                        "font",
-                                        "fontSize",
-                                        "formatBlock",
-                                        "paragraphStyle",
-                                        "blockquote",
-                                        "bold",
-                                        "underline",
-                                        "italic",
-                                        "strike",
-                                        "fontColor",
-                                        "hiliteColor",
-                                        "textStyle",
-                                        "removeFormat",
-                                        "outdent",
-                                        "indent",
-                                        "align",
-                                        "horizontalRule",
-                                        "list",
-                                        "lineHeight",
-                                        "table",
-                                        "link",
-                                        "image",
-                                        "video",
-                                        "audio",
-                                        "imageGallery",
-                                        "fullScreen",
-                                        "showBlocks",
-                                        "codeView",
-                                        "preview",
-                                        ]
+                                            [
+                                                "undo",
+                                                "redo",
+                                                "font",
+                                                "fontSize",
+                                                "formatBlock",
+                                                "blockquote",
+                                                "bold",
+                                                "underline",
+                                                "italic",
+                                                "strike",
+                                                "fontColor",
+                                                "hiliteColor",
+                                                "textStyle",
+                                                "removeFormat",
+                                                "outdent",
+                                                "indent",
+                                                "align",
+                                                "horizontalRule",
+                                                "list",
+                                                "lineHeight",
+                                                "table",
+                                                "link",
+                                                "image",
+                                                "video",
+                                                "audio",
+                                                "imageGallery",
+                                                "fullScreen",
+                                                "preview",
+                                            ]
                                         ],
                                         "lang": pt_Br,
                                         "lang(In nodejs)": "pt_br"

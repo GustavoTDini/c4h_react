@@ -16,7 +16,8 @@ function Profile() {
     const [code, setCode] = useState(CPF)
     const [pessoa, setPessoa] = useState(PF)
     const [doacao, setDoacao] = useState(true)
-    const [assina, setAssina] = useState(true)
+    const [assinatura, setAssinatura] = useState(true)
+    const [voluntario, setVoluntario] = useState(false)
     const [admin, setAdmin] = useState(true)
     const [showPhone, setShowPhone] = useState(false);
     const [showAddress, setShowAddress] = useState(false);
@@ -31,6 +32,8 @@ function Profile() {
     const handleClosePassword = () => setShowPassword(false);
     const handleShowPassword = () => setShowPassword(true);
 
+    const handleSetVoluntario = () => setVoluntario(!voluntario);
+
     const navigate = useNavigate();
 
     const handleClickAdmin = () => {
@@ -39,21 +42,39 @@ function Profile() {
 
     return(
         < Container className="mt-5 mb-5">
-            <Row className="mt-5 justify-content-around">
+            <Row className="mt-5 justify-content-start">
                 <Col md="4" className="mt-2 mb-2">
                     <h1 className="light-blue-text fw-bold text-start">PERFIL</h1>
                 </Col>
+            </Row>
+            <Row className="mt-5 justify-content-around">
+
+                <Col md="4" className="mt-2 mb-2 d-flex justify-content-center">
+                    <Stack className="align-items-center">
+                        <Form.Check
+                            type="switch"
+                            id="switch-Voluntário"
+                            label="Voluntário"
+                            onClick={()=> handleSetVoluntario()}
+                            value={voluntario}
+                            size="lg"/>
+                        {voluntario?<div>
+                            <h3 className="text-center mt-2">Beleza, bora ajudar!</h3>
+                        </div>:<div/>}
+                    </Stack>
+                </Col>
                 <Col md="4" className="mt-2 mb-2">
-                    {assina?<div>
+                    {assinatura?<div>
                         <h3 className="text-center">Assinatura programada</h3>
                         <Button className="w-100">Cancelar Assinatura</Button>
                     </div>:<div/>}
                 </Col>
                 <Col md="4" className="mt-2 mb-2">
-                    {doacao?<div className="d-flex align-self-center justify-content-end">
-                        <h3>Doador Yeah!!</h3>
-                        <Image className="medal-image" alt="medalha" src={medal}/>
-                    </div>:<div/>}
+                    {doacao?
+                        <Stack gap={1} direction={"vertical"} className="m-auto align-items-center">
+                            <Image className="medal-image" alt="medalha" src={medal}/>
+                            <h3>Doador Yeah!!</h3>
+                        </Stack>:<div/>}
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-lg-start">
@@ -80,15 +101,27 @@ function Profile() {
                     </Stack>
                 </Col>
                 <Col md={4}>
-                    <Stack className="w-100 list-height p-0 mb-5" gap={4}>
-                        <h2 className="blue-text mt-3">Minhas Doações</h2>
-                        <Container className="list-scroll list-height">
-                            <ListGroup>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                            </ListGroup>
-                        </Container>
-                    </Stack>
+                    {doacao?<div className="d-flex align-self-center justify-content-end">
+                        <Stack className="w-100 list-height p-0 mb-5" gap={4}>
+                            <h2 className="blue-text mt-3 text-center">Minhas Doações</h2>
+                            <Container className="list-scroll list-height">
+                                <ListGroup>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                    <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                </ListGroup>
+                            </Container>
+                        </Stack>
+                    </div>:<div/>}
+
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-start">

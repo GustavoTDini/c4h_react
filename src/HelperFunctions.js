@@ -1,7 +1,8 @@
+import blogImage from "./res/blogImage.jpg";
+
 export function spliceArray(array, start){
     let newArray = array.slice()
     return newArray.splice(start,9)
-
 }
 
 export const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
@@ -150,3 +151,23 @@ export const pt_Br = {
         code: 'Código'
     }
 };
+
+export const  blog = {
+    id: 12345,
+    image: blogImage,
+    titulo: "Copa dos Refugiados e Imigrantes 2022",
+    chamada: "Vai começar !!! \n Abertura oficial da Copa dos Refugiados e Imigrantes 2022. No Museu do Futebol nesta sexta feira, dia 26/08/2022 `as 11hs",
+    conteudo: "<p><span style=\"color: rgb(0, 0, 128); font-size: 36px;\"><u><b>Vai começar !!!</b></u></span></p>\n" +
+        "\n" +
+        "<hr class=\"__se__solid\">\n" +
+        "\n" +
+        "<p><span style=\"color: rgb(0, 0, 255); font-size: 24px; font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">Abertura oficial da Copa dos Refugiados e Imigrantes 2022. No Museu do Futebol nesta sexta feira, dia 26/08/2022 `as 11hs. A “Copa dos Refugiados e Imigrantes” é um projeto sócio-esportivo que tem o objetivo de integrar pessoas refugiadas e migrantes na comunidade local, incentivar seu protagonismo, gerar uma agenda positiva e colocar em destaque a agenda global de migração e deslocamento forçado.&nbsp;</span><br>\n" +
+        "</p>\n" +
+        "\n" +
+        "<p><span style=\"font-size: 24px; color: rgb(0, 0, 255);\">Bora conhecer o futebol de países do MUNDO que geralmente não conseguimos ver na COPA do MUNDO?&nbsp;</span></p>\n" +
+        "\n" +
+        "<p><span style=\"font-size: 24px; color: rgb(0, 0, 255);\">Este ano de 2022, esta edição contará com a participação de 7 Estados brasileiros, nas seguintes capitais: Porto Alegre/RS, Curitiba/PR, São Paulo/SP, Rio de Janeiro/RJ, Belo Horizonte/MG, Recife/PE e Brasília / DF.</span>​<br>\n" +
+        "</p>\n",
+    data: new Date(Date.now()),
+    categorias: ["Copa", "Eventos"]
+}

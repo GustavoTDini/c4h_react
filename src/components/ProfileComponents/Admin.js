@@ -67,6 +67,10 @@ function Admin() {
         navigate("/addBlog")
     }
 
+    const handleClickBLogList = ()=>{
+        navigate("/blogList")
+    }
+
 
 
     return(
@@ -88,19 +92,19 @@ function Admin() {
                             </Button>
                         </InputGroup>
                         <Container className="list-scroll list-height-large">
-                            <ListGroup>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup variant="flush">
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
 
                             </ListGroup>
                         </Container>
@@ -108,16 +112,25 @@ function Admin() {
                             <Button className="w-75">Alterar</Button>
                             <Button className="w-75">Apagar</Button>
                         </Stack>
-                        <Button className="w-100">Definir como Administrador</Button>
+                        <Button className="w-100">Definir como Administrador/Colaborador</Button>
                     </Stack>
                 </Col>
                 <Col md={4}>
                     <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
                         <h2 className="blue-text mt-3">Doações</h2>
                         <Container className="list-scroll list-height-large">
-                            <ListGroup>
-                                <ListGroup.Item>Gustavo 32598487893</ListGroup.Item>
-                                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+                            <ListGroup variant="flush">
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                                <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
                             </ListGroup>
                         </Container>
                         <Button className="w-100">Verificar Doação</Button>
@@ -171,10 +184,10 @@ function Admin() {
             </Row>
             <Row className="mt-5 justify-content-end">
                 <Col md="3">
-                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Relatórios</Button>
+                    <Button className="w-100 mb-3" size="lg">Adicionar Relatórios</Button>
                 </Col>
                 <Col md="3">
-                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Ver Blogs</Button>
+                    <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickBLogList()}>Ver Blogs</Button>
                 </Col>
                 <Col md="3">
                     <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Blog</Button>

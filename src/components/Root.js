@@ -16,6 +16,7 @@ import Admin from "./ProfileComponents/Admin";
 import Blogs from "./BlogComponents/Blogs";
 import AddBlog from "./ProfileComponents/AddBlog";
 import BlogDetail from "./BlogComponents/BlogDetail";
+import BlogList from "./ProfileComponents/BlogList";
 
 
 function Root() {
@@ -93,6 +94,11 @@ function Root() {
                      <Route
                          path="/blog/:id"
                          element={<BlogDetail />}
+                         errorElement={<Error/>}
+                     />
+                     <Route
+                         path="/blogList"
+                         element={<BlogList />}
                          errorElement={<Error/>}
                      />
                  </Routes>

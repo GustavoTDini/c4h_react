@@ -22,7 +22,7 @@ function BlogCard({blog}) {
                             className="light-grey-background border-1 mx-2 px-2 pt-1 pb-1">{categoria}</p>
                     ))}
                     <h2 className="light-blue-text">{blog.titulo}</h2>
-                    <p className="blog-card-text">{blog.texto.slice(0,200) + " ..."}</p>
+                    <p className="blog-card-text">{blog.chamada.slice(0,200) + " ..."}</p>
                     <p><Link to={"/blog/" + blog.id}  state={{ blog: blog }}>Ver mais</Link></p>
                 </CardGroup>
             </Card>

@@ -201,3 +201,8 @@ height: 150px;
   width: 20px;
   height: 20px;
 }
+
+.editor-size{
+  width: auto;
+  height: 500px;
+}
