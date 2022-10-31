@@ -1,7 +1,7 @@
-import {Button, Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
+import {Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
 import * as React from "react";
-import BlogMiniCard from "../BlogComponents/BlogMiniCard";
-import {blog} from "../../HelperFunctions";
+import BlogMiniCard from "./BlogMiniCard";
+import {blog} from "../../utilities/HelperFunctions";
 import BlogListItem from "./BlogListItem";
 
 const BlogList = () =>  {
@@ -29,11 +29,8 @@ const BlogList = () =>  {
                        <BlogMiniCard blog={blog}/>
                        <BlogMiniCard blog={blog}/>
                    </Stack>
-
                </Col>
-
            </Row>
-
        </Container>
 
 

@@ -1,6 +1,5 @@
-import {Card, CardGroup, CardImg, Col, Stack} from "react-bootstrap";
+import {Card, CardGroup, CardImg} from "react-bootstrap";
 import CardHeader from "react-bootstrap/CardHeader";
-import {meses} from "../../HelperFunctions";
 import {Link} from "react-router-dom";
 
 

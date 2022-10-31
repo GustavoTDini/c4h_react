@@ -4,9 +4,8 @@ import Footer from "../HomeComponents/Footer";
 import BlogCard from "./BlogCard";
 import * as React from "react";
 import BlogPages from "./BlogPages";
-import {blog, spliceArray} from "../../HelperFunctions";
+import {blog, spliceArray} from "../../utilities/HelperFunctions";
 import BlogCategories from "./BlogCategories";
-
 
 
 function Blogs() {

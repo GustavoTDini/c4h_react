@@ -1,12 +1,12 @@
 import {Button, Col, Container, Image, Row, Stack} from "react-bootstrap";
-import {meses} from "../../HelperFunctions";
+import {meses} from "../../utilities/HelperFunctions";
 import Footer from "../HomeComponents/Footer";
 import backIcon from "../../res/back.svg";
 import * as React from "react";
 import {useLocation} from "react-router-dom";
 import {useNavigate} from "react-router";
 import * as DOMPurify from 'dompurify';
-import BlogMiniCard from "./BlogMiniCard";
+import BlogMiniCard from "../AdminComponents/BlogMiniCard";
 
 function BlogDetail(props) {
     const location = useLocation();

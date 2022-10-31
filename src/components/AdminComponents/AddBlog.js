@@ -1,8 +1,7 @@
 import {Button, Col, Container, FloatingLabel, Form, Row, Stack} from "react-bootstrap";
 import SunEditor from "suneditor-react";
-import {pt_Br} from "../../HelperFunctions";
+import {pt_Br} from "../../utilities/HelperFunctions";
 import BlogCategories from "../BlogComponents/BlogCategories";
-
 
 
 function Register() {

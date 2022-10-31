@@ -1,8 +1,18 @@
-import blogImage from "./res/blogImage.jpg";
+import blogImage from "../res/blogImage.jpg";
 
 export function spliceArray(array, start){
     let newArray = array.slice()
     return newArray.splice(start,9)
+}
+
+export function showUsers(user){
+    if (user.cpf !== null){
+        return(user.nome + " usuário PF " + user.login + " de CPF " + user.cpf)
+    } else if (user.cnpj !== null){
+        return(user.razao_social +  " usuário PJ " + user.login + " de CNPJ " + user.cnpj)
+    } else{
+        return ("Usuário com dados com problemas, verifique e corrija, por favor!")
+    }
 }
 
 export const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]

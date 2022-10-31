@@ -1,22 +1,20 @@
 import Login from "./ProfileComponents/Login";
 import {Route, Routes} from "react-router";
 import Home from "./Home";
-import React from "react";
+import React, {useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import About from "./About";
 import Header from "./HeaderComponents/Header";
 import Construction from "./Construction";
 import Error from "./Error";
 import Register from "./ProfileComponents/Register";
-import {useState} from "react";
 import Donation from "./ProfileComponents/Donation";
 import Signature from "./ProfileComponents/Signature";
 import Profile from "./ProfileComponents/Profile";
-import Admin from "./ProfileComponents/Admin";
+import Admin from "./AdminComponents/Admin";
 import Blogs from "./BlogComponents/Blogs";
-import AddBlog from "./ProfileComponents/AddBlog";
+import AddBlog from "./AdminComponents/AddBlog";
 import BlogDetail from "./BlogComponents/BlogDetail";
-import BlogList from "./ProfileComponents/BlogList";
 
 
 function Root() {
@@ -94,11 +92,6 @@ function Root() {
                      <Route
                          path="/blog/:id"
                          element={<BlogDetail />}
-                         errorElement={<Error/>}
-                     />
-                     <Route
-                         path="/blogList"
-                         element={<BlogList />}
                          errorElement={<Error/>}
                      />
                  </Routes>

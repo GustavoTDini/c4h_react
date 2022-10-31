@@ -1,11 +1,11 @@
 import {Button, Col, Container, FloatingLabel, Form, Image, ListGroup, Row, Stack} from "react-bootstrap";
 import medal from "../../res/certificado.png";
+import * as React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router";
-import AddPhone from "./AddPhone";
-import AddAddress from "./AddAdress";
-import * as React from "react";
 import ChangePassword from "./ChangePassword";
+import ShowAddress from "./ShowAddress";
+import ShowPhone from "./ShowPhone";
 
 function Profile() {
     const CPF = "CPF";
@@ -19,15 +19,7 @@ function Profile() {
     const [assinatura, setAssinatura] = useState(true)
     const [voluntario, setVoluntario] = useState(false)
     const [admin, setAdmin] = useState(true)
-    const [showPhone, setShowPhone] = useState(false);
-    const [showAddress, setShowAddress] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-
-    const handleClosePhone = () => setShowPhone(false);
-    const handleShowPhone = () => setShowPhone(true);
-
-    const handleCloseAddress = () => setShowAddress(false);
-    const handleShowAddress = () => setShowAddress(true);
 
     const handleClosePassword = () => setShowPassword(false);
     const handleShowPassword = () => setShowPassword(true);
@@ -48,7 +40,6 @@ function Profile() {
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-around">
-
                 <Col md="4" className="mt-2 mb-2 d-flex justify-content-center">
                     <Stack className="align-items-center">
                         <Form.Check
@@ -124,26 +115,8 @@ function Profile() {
 
                 </Col>
             </Row>
-            <Row className="mt-5 justify-content-start">
-                <Col md={8}>
-                    <Stack className="justify-content-between" direction="horizontal">
-                        <Form.Label className="blue-text h4">Endereços:</Form.Label>
-                        <Button className="w-50" onClick={()=> handleShowAddress()}>Adicionar Endereço</Button>
-                    </Stack>
-                </Col>
-            </Row>
-            <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
-            </Row>
-            <Row className="mt-5 justify-content-start">
-                <Col md={8}>
-                    <Stack className="justify-content-between" direction="horizontal">
-                        <Form.Label className="blue-text h4">Telefones:</Form.Label>
-                        <Button className="w-50" onClick={()=> handleShowPhone()}>Adicionar Telefone</Button>
-                    </Stack>
-                </Col>
-            </Row>
-            <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
-            </Row>
+            <ShowAddress/>
+            <ShowPhone/>
             <Row className="mt-5 justify-content-start">
                 <Col md="3" className="mt-2 mb-2">
                     <Button className="w-100" size="lg" onClick={()=> handleShowPassword()}>Alterar Senha</Button>
@@ -159,8 +132,6 @@ function Profile() {
                         <Button className="w-100" size="lg" onClick={() => handleClickAdmin()}>Administrador</Button>
                     </Col>:<div/>}
             </Row>
-            <AddPhone show={showPhone} handleClose={handleClosePhone}/>
-            <AddAddress show={showAddress} handleClose={handleCloseAddress}/>
             <ChangePassword show={showPassword} handleClose={handleClosePassword}/>
         </Container>
     );
