@@ -52,7 +52,7 @@ const DonationsAdmin = () => {
     return(
         <Container>
             <Row>
-            <Col md={4}>
+            <Col md={8}>
                 <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
                     <h2 className="blue-text mt-3">Doações</h2>
                     <Container className="list-scroll list-height-large">

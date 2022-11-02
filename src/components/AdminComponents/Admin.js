@@ -3,6 +3,7 @@ import * as React from "react";
 import UsersAdmin from "./UsersAdmin";
 import BlogAdmin from "./BlogAdmin";
 import DonationsAdmin from "./DonationsAdmin";
+import SignaturesAdmin from "./SignaturesAdmin";
 
 function Admin() {
 
@@ -26,6 +27,7 @@ function Admin() {
                         <DonationsAdmin/>
                     </Tab>
                     <Tab eventKey="assinaturas" title="Assinaturas">
+                        <SignaturesAdmin/>
                     </Tab>
                     <Tab eventKey="blogs" title="Blogs">
                         <BlogAdmin/>

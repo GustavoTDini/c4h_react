@@ -1,24 +1,98 @@
 import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
 import {useState} from "react";
+import {verifyCNPJ, verifyCPF} from "../../utilities/HelperFunctions";
+import {_addUserPF, _addUserPJ, _verifyCnpj, _verifyCpf, _verifyLogin} from "../../api/users";
+import AlertMessage from "../AlertMessage";
 
 function Register() {
     const CPF = "CPF";
     const CNPJ = "CNPJ"
     const PF = "PF"
     const PJ = "PJ"
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 
-    const [code, setCode] = useState(CPF)
+    const [usingCode, setUsingCode] = useState(CPF)
     const [pessoa, setPessoa] = useState(PF)
+    const [login, setLogin] = useState("")
+    const [code, setCode] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [showMessage, setShowMessage] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertTitle, setAlertTitle] = useState("");
+    const [alertButton, setAlertButton] = useState("");
+    const [alertVariant, setAlertVariant] = useState("");
+
+    const handleCloseMessage = () => setShowMessage(false);
+    const handleShowMessage = (message, title, button, variant) => {
+        setAlertMessage(message)
+        setAlertVariant(variant)
+        setAlertTitle(title)
+        setAlertButton(button)
+        setShowMessage(true);
+    }
+
 
     const handleChangePessoa = (e) => {
         e.persist();
         setPessoa(e.target.value);
         console.log(pessoa)
         if (e.target.value === PJ){
-            setCode(CNPJ)
+            setUsingCode(CNPJ)
         } else{
-            setCode(CPF)
+            setUsingCode(CPF)
         }
+    };
+
+    const handleAddUser = async () => {
+        if (login === "" || password === "" || confirmPassword === "" || code === "" || email === ""){
+            handleShowMessage("Por favor, preencha todos os Campos!", "Atenção", "OK", 'warning')
+        } else if (usingCode === PF && !verifyCPF(code)) {
+            handleShowMessage("CPF inválido", "Atenção", "OK", 'warning')
+        } else if (usingCode === PJ && !verifyCNPJ(code)) {
+            handleShowMessage("CNPJ inválido", "Atenção", "OK", 'warning')
+        } else if (!strongRegex.test(password)) {
+            handleShowMessage("Senha de segurança fraca, a senha deve conter: 1 letra maiúscula, 1 letra minúscula, 1 caractere especial, letras e numeros e pelo menos 8 caracteres", "Atenção", "OK", 'warning')
+        } else {
+            const loginExist = await _verifyLogin(login)
+            if (loginExist) {
+                handleShowMessage("Usuário já existente", "Atenção", "OK", 'warning')
+            } else {
+                if (pessoa === PF) {
+                    const cpfExist = await _verifyCpf(code)
+                    if (cpfExist) {
+                        handleShowMessage("CPF já cadastrado", "Atenção", "OK", 'warning')
+                    } else {
+                        _addUserPF(login, email, code, password).then(r =>{
+                                if (r.status === 200){
+                                    handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
+                                } else{
+                                    handleShowMessage("Algo deu errado tente novamente", "Erro", "OK", 'danger')
+                                }
+                            }
+                        )
+                    }
+                } else if (pessoa === PF) {
+                    const cnpjExist = await _verifyCnpj(code)
+                    if (cnpjExist) {
+                        handleShowMessage("CNPJ já cadastrado", "Atenção", "OK", 'warning')
+                    } else {
+                        _addUserPJ(login, email, code, password).then(r =>{
+                            if (r.status === 200){
+                                handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
+                            } else{
+                                handleShowMessage("Algo deu errado tente novamente", "Erro", "OK", 'danger')
+                            }
+                        }
+                        )
+                    }
+                }
+
+            }
+        }
+
     };
 
     return(
@@ -49,25 +123,37 @@ function Register() {
                                 />
                             </div>
                             <FloatingLabel controlId="login" label="Login">
-                                <Form.Control type="text" />
+                                <Form.Control type="text" value={login} onChange={event => setLogin(event.target.value)}/>
                             </FloatingLabel>
                             <FloatingLabel controlId="password" label="Senha">
-                                <Form.Control type="password" />
+                                <Form.Control type="password" value={password} onChange={event => setPassword(event.target.value)}/>
                             </FloatingLabel>
                             <FloatingLabel controlId="password2" label="Confirme a Senha">
-                                <Form.Control type="password" />
+                                <Form.Control type="password" value={confirmPassword} onChange={event => setConfirmPassword(event.target.value)}/>
                             </FloatingLabel>
                             <FloatingLabel controlId="email" label="E-mail">
-                                <Form.Control type="text" />
+                                <Form.Control type="text" value={email} onChange={event => setEmail(event.target.value)}/>
                             </FloatingLabel>
-                            <FloatingLabel controlId="code" label={code}>
-                                <Form.Control type="text" />
+                            <FloatingLabel controlId="code" label={usingCode}>
+                                <Form.Control type="text" value={code} onChange={event => setCode(event.target.value)}/>
                             </FloatingLabel>
-                            <Button className="yellow-background border-0 blue-text fw-bold" size="lg">Cadastrar</Button>
+                            <Button className="yellow-background border-0 blue-text fw-bold"
+                                    size="lg"
+                                    onClick={handleAddUser}>
+                                    Cadastrar
+                            </Button>
                         </Stack>
                     </Form>
                 </Col>
             </Row>
+            <AlertMessage
+            title={alertTitle}
+            message={alertMessage}
+            butttonText={alertButton}
+            variant={alertVariant}
+            show={showMessage}
+            handleClose={handleCloseMessage}
+            />
         </Container>
     );
 }

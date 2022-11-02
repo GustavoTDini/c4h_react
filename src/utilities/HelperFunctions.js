@@ -15,6 +15,14 @@ export function showUsers(user){
     }
 }
 
+export function verifyCPF(cpf){
+    return cpf.length === 11;
+}
+
+export function verifyCNPJ(cnpj){
+    return cnpj.length === 14;
+}
+
 export const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 
 export const pt_Br = {

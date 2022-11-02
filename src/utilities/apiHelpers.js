@@ -1,29 +1,17 @@
-// format post for the add API
-export function formatUserPF(title, body, author, category) {
+import {hashpassword} from './auth'
+
+// format user as PF for the add API
+export function formatUserPF(login, email, cpf, senha) {
     return {
-        id: generateUID(),
-        timestamp: Date.now(),
-        title: title,
-        body: body,
-        author: author,
-        category: category,
+        "login": login,
+        "email": email,
+        "cpf": cpf,
+        "senha": hashpassword(senha)
     }
 }
 
 export function formatUserPJ(title, body, author, category) {
     return {
-        id: generateUID(),
-        timestamp: Date.now(),
-        title: title,
-        body: body,
-        author: author,
-        category: category,
-    }
-}
-
-export function formatUserPF(title, body, author, category) {
-    return {
-        id: generateUID(),
         timestamp: Date.now(),
         title: title,
         body: body,
