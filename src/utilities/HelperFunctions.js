@@ -1,15 +1,20 @@
 import blogImage from "../res/blogImage.jpg";
 
+export const CPF = "CPF";
+export const CNPJ = "CNPJ"
+export const PF = "PF"
+export const PJ = "PJ"
+
 export function spliceArray(array, start){
     let newArray = array.slice()
     return newArray.splice(start,9)
 }
 
 export function showUsers(user){
-    if (user.cpf !== null){
-        return(user.nome + " usuário PF " + user.login + " de CPF " + user.cpf)
-    } else if (user.cnpj !== null){
-        return(user.razao_social +  " usuário PJ " + user.login + " de CNPJ " + user.cnpj)
+    if (user.vl_cpf !== null){
+        return(user.nm_nome + " usuário PF " + user.nm_login + " de CPF " + user.vl_cpf)
+    } else if (user.vl_cnpj !== null){
+        return(user.nm_razao_social +  " usuário PJ " + user.nm_login + " de CNPJ " + user.vl_cnpj)
     } else{
         return ("Usuário com dados com problemas, verifique e corrija, por favor!")
     }
@@ -21,6 +26,11 @@ export function verifyCPF(cpf){
 
 export function verifyCNPJ(cnpj){
     return cnpj.length === 14;
+}
+
+export function getNowDate(){
+    let date = new Date(Date.now())
+    return date.toISOString().slice(0, 19).replace('T', ' ');
 }
 
 export const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]

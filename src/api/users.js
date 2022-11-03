@@ -1,76 +1,50 @@
 import {API, headers} from "./c4hAPI";
 import {formatUserPF, formatUserPJ} from "../utilities/apiHelpers";
+import {PF, PJ} from "../utilities/HelperFunctions";
 
 export const _getAllUsers = async () =>
-    fetch(`${API}/usuarios/verTodosUsuarios.php`, {
+    fetch(`${API}/usuarios`, {
+        headers,
         method: 'GET',
-        headers
     }).then(res => res.json())
-        .then(res => res.users)
 
-export const _addUserPF = async (login, email, cpf, senha ) => {
-    return fetch(`${API}/usuarios/adicionarPF.php`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(formatUserPF(
+export const _addUser = async (login, email, codigo, senha, tipo ) => {
+    let body = '';
+    if (tipo === PF){
+        body = JSON.stringify(formatUserPF(
             login,
             email,
-            cpf,
+            codigo,
             senha
         ))
+    } else if (tipo === PJ){
+        body = JSON.stringify(formatUserPJ(
+            login,
+            email,
+            codigo,
+            senha
+        ))
+    }
+    console.log(body);
+    return fetch(`${API}/usuarios`, {
+        headers,
+        method: 'POST',
+        body: body
     })
 }
 
-export const _addUserPJ = async (login, email, cnpj, senha ) => {
-    return fetch(`${API}/usuarios/adicionarPF.php`, {
-        method: 'POST',
+export const _verifyUserByColumn = async (value, column) => {
+    let result = await fetch(`${API}/usuarios?filter[${column}]=${value}`, {
+        method: 'GET',
         headers,
-        body: JSON.stringify(formatUserPJ(
-            login,
-            email,
-            cnpj,
-            senha
-        ))
-    })
-}
-
-export const _verifyLogin = async (login) => {
-    return fetch(`${API}/usuarios/verificarLogin.php`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            "login":login
-        })
     }).then(res=>res.json())
+    return result.length !== 0;
 }
 
-export const _verifyCpf = async (cpf) => {
-    return fetch(`${API}/usuarios/verificarCPF.php`, {
-        method: 'POST',
+export const _getUserById = async (id) => {
+    return fetch(`${API}/usuarios/${id}`, {
+        method: 'GET',
         headers,
-        body: JSON.stringify({
-            "cpf":cpf
-        })
-    }).then(res=>res.json())
-}
-
-export const _verifyCnpj = async (cnpj) => {
-    return fetch(`${API}/usuarios/verificarCNPJ.php`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            "cnpj":cnpj
-        })
-    }).then(res=>res.json())
-}
-
-export const _verifyPassword = async (login) => {
-    return fetch(`${API}/usuarios/verificarCNPJ.php`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            "login":login
-        })
     }).then(res=>res.json())
 }
 

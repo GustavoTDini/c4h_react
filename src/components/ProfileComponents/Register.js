@@ -1,15 +1,11 @@
-import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, FloatingLabel, Form, Row, Stack} from "react-bootstrap";
 import {useState} from "react";
-import {verifyCNPJ, verifyCPF} from "../../utilities/HelperFunctions";
-import {_addUserPF, _addUserPJ, _verifyCnpj, _verifyCpf, _verifyLogin} from "../../api/users";
+import {CNPJ, CPF, PF, PJ, verifyCNPJ, verifyCPF} from "../../utilities/HelperFunctions";
+import {_addUser, _verifyUserByColumn} from "../../api/users";
 import AlertMessage from "../AlertMessage";
 
 function Register() {
-    const CPF = "CPF";
-    const CNPJ = "CNPJ"
-    const PF = "PF"
-    const PJ = "PJ"
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#])(?=.{8,})");
     const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 
     const [usingCode, setUsingCode] = useState(CPF)
@@ -56,34 +52,34 @@ function Register() {
         } else if (!strongRegex.test(password)) {
             handleShowMessage("Senha de segurança fraca, a senha deve conter: 1 letra maiúscula, 1 letra minúscula, 1 caractere especial, letras e numeros e pelo menos 8 caracteres", "Atenção", "OK", 'warning')
         } else {
-            const loginExist = await _verifyLogin(login)
+            const loginExist = await _verifyUserByColumn(login, 'login')
             if (loginExist) {
                 handleShowMessage("Usuário já existente", "Atenção", "OK", 'warning')
             } else {
                 if (pessoa === PF) {
-                    const cpfExist = await _verifyCpf(code)
+                    const cpfExist = await _verifyUserByColumn(code, 'cpf')
                     if (cpfExist) {
                         handleShowMessage("CPF já cadastrado", "Atenção", "OK", 'warning')
                     } else {
-                        _addUserPF(login, email, code, password).then(r =>{
-                                if (r.status === 200){
+                        _addUser(login, email, code, password, PF).then(r =>{
+                                if (r.status === 201){
                                     handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
                                 } else{
-                                    handleShowMessage("Algo deu errado tente novamente", "Erro", "OK", 'danger')
+                                    handleShowMessage("Algo deu errado, tente novamente", "Erro", "OK", 'danger')
                                 }
                             }
                         )
                     }
-                } else if (pessoa === PF) {
-                    const cnpjExist = await _verifyCnpj(code)
+                } else if (pessoa === PJ) {
+                    const cnpjExist = await _verifyUserByColumn(code, 'cnpj')
                     if (cnpjExist) {
                         handleShowMessage("CNPJ já cadastrado", "Atenção", "OK", 'warning')
                     } else {
-                        _addUserPJ(login, email, code, password).then(r =>{
-                            if (r.status === 200){
+                        _addUser(login, email, code, password, PJ).then(r =>{
+                            if (r.status === 201){
                                 handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
                             } else{
-                                handleShowMessage("Algo deu errado tente novamente", "Erro", "OK", 'danger')
+                                handleShowMessage("Algo deu errado, tente novamente", "Erro", "OK", 'danger')
                             }
                         }
                         )
