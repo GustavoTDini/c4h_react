@@ -1,4 +1,4 @@
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import {Wrapper} from "@googlemaps/react-wrapper";
 import Map from "./Map";
 import * as React from "react";
 
@@ -17,7 +17,6 @@ const MapWrapper = () => {
                 <Map coords={coords} zoom={zoom}/>
             </Wrapper>
             <br/>
-            <h1>{apiKey}</h1>
         </div>
 
 

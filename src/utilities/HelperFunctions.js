@@ -5,19 +5,81 @@ export const CNPJ = "CNPJ"
 export const PF = "PF"
 export const PJ = "PJ"
 
+
+export const meses = [
+    {"nome":"Janeiro",
+        "numero": 1,
+        "abreviada": "Jan"},
+    {"nome":"Fevereiro",
+        "numero": 2,
+        "abreviada": "Fev"},
+    {"nome":"Março",
+        "numero": 3,
+        "abreviada": "Mar"},
+    {"nome":"Abril",
+        "numero": 4,
+        "abreviada": "Abr"},
+    {"nome":"Maio",
+        "numero": 5,
+        "abreviada": "Mai"},
+    {"nome":"Junho",
+        "numero": 6,
+        "abreviada": "Jun"},
+    {"nome":"Julho",
+        "numero": 7,
+        "abreviada": "Jul"},
+    {"nome":"Agosto",
+        "numero": 8,
+        "abreviada": "Ago"},
+    {"nome":"Setembro",
+        "numero": 9,
+        "abreviada": "Set"},
+    {"nome":"Outubro",
+        "numero": 10,
+        "abreviada": "Out"},
+    {"nome":"Novembro",
+        "numero": 11,
+        "abreviada": "Nov"},
+    {"nome":"Dezembro",
+        "numero": 12,
+        "abreviada": "Dez"},
+]
+export const anos = [2022, 2023, 2024, 2025]
+
 export function spliceArray(array, start){
     let newArray = array.slice()
     return newArray.splice(start,9)
 }
 
+export const realNotation = Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+});
+
+function addZero(number){
+    if (number <= 9)
+        return "0" + number;
+    else
+        return number;
+}
+
+function showDate(date){
+    let jsDate = new Date(date)
+    return jsDate.getDate() + " de " + meses[jsDate.getMonth()-1].nome + " de " + jsDate.getFullYear()
+}
+
 export function showUsers(user){
-    if (user.vl_cpf !== null){
-        return(user.nm_nome + " usuário PF " + user.nm_login + " de CPF " + user.vl_cpf)
+    if (user.cpf !== null){
+        return(user.nome + " usuário PF " + user.login + " de CPF " + user.cpf)
     } else if (user.vl_cnpj !== null){
-        return(user.nm_razao_social +  " usuário PJ " + user.nm_login + " de CNPJ " + user.vl_cnpj)
+        return(user.razao_social +  " usuário PJ " + user.login + " de CNPJ " + user.cnpj)
     } else{
         return ("Usuário com dados com problemas, verifique e corrija, por favor!")
     }
+}
+
+export function showDonations(donation){
+    return ("Doação de " + realNotation.format(donation.valor) + " realizada em " + showDate(donation.created_at))
 }
 
 export function verifyCPF(cpf){
@@ -32,8 +94,6 @@ export function getNowDate(){
     let date = new Date(Date.now())
     return date.toISOString().slice(0, 19).replace('T', ' ');
 }
-
-export const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 
 export const pt_Br = {
     code: 'pt_br',

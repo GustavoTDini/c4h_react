@@ -26,7 +26,7 @@ function BlogDetail(props) {
                         </Col>
                         <Col md={{ span: 2, offset: 8 }} className="d-flex justify-content-end p-2 text-center">
                             <h3 className="rounded-3 blue-background yellow-text h-100 w-50 mx-1 pt-3">{blog.data.getDate()}</h3>
-                            <h3 className="rounded-3 blue-background yellow-text h-100 w-50 mx-1 pt-3">{meses[blog.data.getMonth()]}</h3>
+                            <h3 className="rounded-3 blue-background yellow-text h-100 w-50 mx-1 pt-3">{meses[blog.data.getMonth()].abreviada}</h3>
                         </Col>
                         <p className="blue-text fw-bold h1 mb-5 mt-5">{blog.titulo}</p>
                         <Image alt="imagem sobre a organização" className="h-auto" src={blog.image}/>

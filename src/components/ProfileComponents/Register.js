@@ -1,12 +1,13 @@
 import {Button, Col, Container, FloatingLabel, Form, Row, Stack} from "react-bootstrap";
 import {useState} from "react";
 import {CNPJ, CPF, PF, PJ, verifyCNPJ, verifyCPF} from "../../utilities/HelperFunctions";
-import {_addUser, _verifyUserByColumn} from "../../api/users";
+import {_verifyUserByColumn} from "../../api/users";
 import AlertMessage from "../AlertMessage";
+import {_register} from "../../api/auth";
 
 function Register() {
-    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#])(?=.{8,})");
-    const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+    const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})");
+    const mediumRegex = new RegExp("^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))");
 
     const [usingCode, setUsingCode] = useState(CPF)
     const [pessoa, setPessoa] = useState(PF)
@@ -15,21 +16,20 @@ function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+
     const [showMessage, setShowMessage] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const [alertTitle, setAlertTitle] = useState("");
-    const [alertButton, setAlertButton] = useState("");
-    const [alertVariant, setAlertVariant] = useState("");
 
     const handleCloseMessage = () => setShowMessage(false);
     const handleShowMessage = (message, title, button, variant) => {
-        setAlertMessage(message)
-        setAlertVariant(variant)
-        setAlertTitle(title)
-        setAlertButton(button)
+        setAlertMessage({
+            message: message,
+            variant: variant,
+            title: title,
+            buttonText: button,
+        })
         setShowMessage(true);
     }
-
 
     const handleChangePessoa = (e) => {
         e.persist();
@@ -61,7 +61,8 @@ function Register() {
                     if (cpfExist) {
                         handleShowMessage("CPF já cadastrado", "Atenção", "OK", 'warning')
                     } else {
-                        _addUser(login, email, code, password, PF).then(r =>{
+                        _register(login, email, code, password, PF).then(r =>{
+                            console.log(r)
                                 if (r.status === 201){
                                     handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
                                 } else{
@@ -75,7 +76,7 @@ function Register() {
                     if (cnpjExist) {
                         handleShowMessage("CNPJ já cadastrado", "Atenção", "OK", 'warning')
                     } else {
-                        _addUser(login, email, code, password, PJ).then(r =>{
+                        _register(login, email, code, password, PJ).then(r =>{
                             if (r.status === 201){
                                 handleShowMessage("Usuário cadastrado com sucesso", "Sucesso", "OK", 'success')
                             } else{
@@ -143,12 +144,9 @@ function Register() {
                 </Col>
             </Row>
             <AlertMessage
-            title={alertTitle}
             message={alertMessage}
-            butttonText={alertButton}
-            variant={alertVariant}
             show={showMessage}
-            handleClose={handleCloseMessage}
+            handleButton={handleCloseMessage}
             />
         </Container>
     );

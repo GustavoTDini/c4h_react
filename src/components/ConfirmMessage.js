@@ -1,7 +1,7 @@
 import React from 'react';
 import {Alert, Button, Modal} from "react-bootstrap";
 
-function AlertMessage({message, show, handleButton}) {
+function ConfirmMessage({message, show, handleConfirm, handleCancel}) {
 
     return (
         <Modal
@@ -15,8 +15,11 @@ function AlertMessage({message, show, handleButton}) {
                 </p>
                 <hr />
                 <div className="d-flex justify-content-end">
-                    <Button onClick={handleButton} variant="outline-success" className="mx-2">
-                        {message.buttonText1}
+                    <Button onClick={handleConfirm} variant="outline-success" className="mx-2">
+                        Confirmar
+                    </Button>
+                    <Button onClick={handleCancel} variant="outline-success" className="mx-2">
+                        Cancelar
                     </Button>
                 </div>
             </Alert>
@@ -24,4 +27,4 @@ function AlertMessage({message, show, handleButton}) {
     );
 }
 
-export default AlertMessage
+export default ConfirmMessage

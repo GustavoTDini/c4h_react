@@ -1,51 +1,29 @@
 import {API, headers} from "./c4hAPI";
-import {formatUserPF, formatUserPJ} from "../utilities/apiHelpers";
-import {PF, PJ} from "../utilities/HelperFunctions";
+import {setBearerToken} from "../utilities/apiHelpers";
 
-export const _getAllUsers = async () =>
-    fetch(`${API}/usuarios`, {
+export const _getAllUsers = async (token) =>{
+    let headers = setBearerToken(token);
+    return fetch(`${API}/api/usuario`, {
         headers,
         method: 'GET',
     }).then(res => res.json())
-
-export const _addUser = async (login, email, codigo, senha, tipo ) => {
-    let body = '';
-    if (tipo === PF){
-        body = JSON.stringify(formatUserPF(
-            login,
-            email,
-            codigo,
-            senha
-        ))
-    } else if (tipo === PJ){
-        body = JSON.stringify(formatUserPJ(
-            login,
-            email,
-            codigo,
-            senha
-        ))
-    }
-    console.log(body);
-    return fetch(`${API}/usuarios`, {
-        headers,
-        method: 'POST',
-        body: body
-    })
 }
 
+
 export const _verifyUserByColumn = async (value, column) => {
-    let result = await fetch(`${API}/usuarios?filter[${column}]=${value}`, {
+    return await fetch(`${API}/api/usuario/${column}/${value}`, {
         method: 'GET',
         headers,
-    }).then(res=>res.json())
-    return result.length !== 0;
+    }).then(res => res.json())
+        .then(res => res.message);
 }
 
 export const _getUserById = async (id) => {
-    return fetch(`${API}/usuarios/${id}`, {
+    return fetch(`${API}/api/usuario/${id}`, {
         method: 'GET',
         headers,
-    }).then(res=>res.json())
+    }).then(res => res.json())
+        .then(res => res.message);
 }
 
 

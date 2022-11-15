@@ -1,19 +1,53 @@
 import {Button, Col, Container, FloatingLabel, Form, Image, Row, Stack} from "react-bootstrap";
 import logo from "../../res/logo2.png";
 import {useNavigate} from "react-router";
+import {_loginUser} from "../../api/auth";
+import * as React from "react";
+import {useState} from "react";
+import {tokenKey} from "../../utilities/apiHelpers";
+import AlertMessage from "../AlertMessage";
 
 function Login({handleSetUser}) {
+    const [login, setLogin] = useState("")
+    const [password, setPassword] = useState("")
+
+    const [showMessage, setShowMessage] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+
+    const handleCloseMessage = () => setShowMessage(false);
+    const handleShowMessage = (message, title, button, variant) => {
+        setAlertMessage({
+            message: message,
+            variant: variant,
+            title: title,
+            buttonText1: button,
+        })
+        setShowMessage(true);
+    }
+
     const navigate = useNavigate();
     const handleClickRegister = () => {
         navigate("/register")
     }
 
-    const handleClickLogin = () => {
-        handleSetUser()
-        navigate("/")
+    const handleClickLogin = async () => {
+        if (login === "" || password === ""){
+           return handleShowMessage("Por favor, preencha todos os Campos!", "Atenção", "OK", 'warning')
+        }
+        else{
+            await _loginUser(login, password).then(res=>{
+                if(res.status === 401){
+                    handleShowMessage("Login ou Senha estão incorretos!", "Atenção", "OK", 'warning')
+                } else if (res.status === 202){
+                    localStorage.setItem(tokenKey, res.token)
+                    handleSetUser(true)
+                    navigate("/")
+                } else {
+                    handleShowMessage("Algo deu Errado, tente novamente!", "Atenção", "OK", 'warning')
+                }
+            })
+        }
     }
-
-
 
     return(
         < Container className="mt-5">
@@ -26,17 +60,22 @@ function Login({handleSetUser}) {
                     <Form className="mt-5 px-5">
                         <Stack direction="vertical" gap={5}>
                             <FloatingLabel controlId="login" label="Login">
-                                <Form.Control type="text"/>
+                                <Form.Control type="text" value={login} onChange={event => setLogin(event.target.value)}/>
                             </FloatingLabel>
                             <FloatingLabel controlId="password" label="Senha">
-                                <Form.Control type="password" />
+                                <Form.Control type="password" value={password} onChange={event => setPassword(event.target.value)}/>
                             </FloatingLabel>
-                            <Button onClick={()=>handleClickLogin()}>Login</Button>
+                            <Button onClick={()=>[handleClickLogin()]}>Login</Button>
                             <Button onClick={()=>{handleClickRegister()}}>Cadastro</Button>
                         </Stack>
                     </Form>
                 </Col>
             </Row>
+            <AlertMessage
+                message={alertMessage}
+                show={showMessage}
+                handleButton={handleCloseMessage}
+            />
         </Container>
     );
 }

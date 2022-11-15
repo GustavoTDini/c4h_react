@@ -20,8 +20,8 @@ import BlogDetail from "./BlogComponents/BlogDetail";
 function Root() {
     const [user, setUser] = useState(false)
 
-    function handleSetUser() {
-        setUser(!user);
+    function handleSetUser(logged) {
+        setUser(logged)
     }
 
     return(
@@ -76,7 +76,7 @@ function Root() {
                      />
                      <Route
                          path="/profile"
-                         element={<Profile />}
+                         element={<Profile handleSetUser={handleSetUser} />}
                          errorElement={<Error/>}
                      />
                      <Route

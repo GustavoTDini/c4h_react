@@ -12,7 +12,7 @@ function BlogCard({blog}) {
                 <CardHeader className="yellow-background">
                     <Stack direction={"horizontal"} gap={2} className="pt-2">
                         <h5 className="rounded-2 blue-background yellow-text p-2">{blog.data.getDate()}</h5>
-                        <h5 className="rounded-2 blue-background yellow-text p-2">{meses[blog.data.getMonth()]}</h5>
+                        <h5 className="rounded-2 blue-background yellow-text p-2">{meses[blog.data.getMonth()].abreviada}</h5>
                     </Stack>
                 </CardHeader>
                 <CardGroup>

@@ -1,39 +1,37 @@
-import {Button, Col, Container, Dropdown, DropdownButton, InputGroup, ListGroup, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
 import DonationChart from "./DonationChart";
 import * as React from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {_getAllDonations} from "../../api/donations";
+import {tokenKey} from "../../utilities/apiHelpers";
+import {anos, meses, showDonations} from "../../utilities/HelperFunctions";
+import DonationByMonth from "../ProfileComponents/DonationByMonth";
 
 const DonationsAdmin = () => {
+    const [donations, setDonations] = useState({list: [], isFetching: false, fetched: false});
+
+    useEffect(() => {
+        const fetchDonations = async () => {
+            try {
+                setDonations(donations => ({list: donations.list, isFetching: true, fetched: false}));
+                const response = await _getAllDonations(localStorage.getItem(tokenKey))
+                return response.message
+            } catch (e) {
+                console.log(e);
+                return false
+            }
+        };
+        fetchDonations().then(res =>{
+            if (res === false){
+                setDonations((donations) => ({list: donations.list, isFetching: false, fetched: false}));
+            } else{
+                setDonations({list: [...res], isFetching: true, fetched: true});
+            }
+        })
+    }, []);
+
     const [ano, setAno] = useState(null)
     const [mes, setMes] = useState(null)
-
-    const meses = [
-        {"nome":"Janeiro",
-            "numero": 1},
-        {"nome":"Fevereiro",
-            "numero": 2},
-        {"nome":"Março",
-            "numero": 3},
-        {"nome":"Abril",
-            "numero": 4},
-        {"nome":"Maio",
-            "numero": 5},
-        {"nome":"Junho",
-            "numero": 6},
-        {"nome":"Julho",
-            "numero": 7},
-        {"nome":"Agosto",
-            "numero": 8},
-        {"nome":"Setembro",
-            "numero": 9},
-        {"nome":"Outubro",
-            "numero": 10},
-        {"nome":"Novembro",
-            "numero": 11},
-        {"nome":"Dezembro",
-            "numero": 12},
-    ]
-    const anos = [2022, 2023, 2024, 2025]
 
     useState(()=>{
         setAno(anos[0])
@@ -57,63 +55,15 @@ const DonationsAdmin = () => {
                     <h2 className="blue-text mt-3">Doações</h2>
                     <Container className="list-scroll list-height-large">
                         <ListGroup variant="flush">
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
-                            <ListGroup.Item action>Dapibus ac facilisis in</ListGroup.Item>
+                            {donations.fetched && donations.list.map((donation)=>(
+                                <ListGroup.Item key={donation.id} action>{showDonations(donation)}</ListGroup.Item>
+                            ))}
                         </ListGroup>
                     </Container>
                     <Button className="w-100">Verificar Doação</Button>
                 </Stack>
             </Col>
-            <Col md={4}>
-                <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
-                    <h2 className="blue-text mt-3 text-center">Doações por Mês</h2>
-                    <Button className="w-100" size="lg">Verificar</Button>
-                    <Stack className="justify-content-between mt-2" direction="horizontal">
-                        <InputGroup className="mb-3 w-auto">
-                            <InputGroup.Text id="basic-addon1">Mês</InputGroup.Text>
-                            <DropdownButton
-                                variant="outline-secondary"
-                                title={mes}
-                                id="input-group-dropdown-2"
-                                align="end"
-                                onSelect={selectMes}
-                            >
-                                {meses.map((mes)=>(
-                                    <Dropdown.Item
-                                        eventKey={mes.nome}
-                                    >{mes.nome}</Dropdown.Item>
-                                ))}
-                            </DropdownButton>
-                        </InputGroup>
-                        <InputGroup className="mb-3 w-auto">
-                            <InputGroup.Text id="basic-addon1">Ano</InputGroup.Text>
-                            <DropdownButton
-                                variant="outline-secondary"
-                                title={ano}
-                                id="input-group-dropdown-2"
-                                align="end"
-                                onSelect={(e) => selectAno(e)}
-                            >
-                                {anos.map((ano)=>(
-                                    <Dropdown.Item
-                                        eventKey={ano}
-                                    >{ano}</Dropdown.Item>
-                                ))}
-                            </DropdownButton>
-                        </InputGroup>
-                    </Stack>
-                    <h4 className="blue-text text-center">Em Janeiro de 2022, foram doados no total R$ 1.500,00</h4>
-                </Stack>
-            </Col>
+            <DonationByMonth/>
         </Row>
     <Row className="justify-content-end">
         <DonationChart/>

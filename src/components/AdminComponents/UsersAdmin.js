@@ -6,14 +6,31 @@ import {_getAllUsers} from "../../api/users";
 import {showUsers} from "../../utilities/HelperFunctions";
 import ShowAddress from "../ProfileComponents/ShowAddress";
 import ShowPhone from "../ProfileComponents/ShowPhone";
+import {tokenKey} from "../../utilities/apiHelpers";
 
 const UsersAdmin = () => {
-    let [users, setUsers] = useState(null)
-    let [selectedUser, setSelectedUser] = useState(1)
+    const [users, setUsers] = useState({list: [], isFetching: false, fetched: false});
+    const [selectedUser, setSelectedUser] = useState(1)
 
-    useEffect( () => {
-        _getAllUsers().then(res => setUsers(res))
-    },[])
+    useEffect(() => {
+        const fetchDonations = async () => {
+            try {
+                setUsers(users => ({list: users.list, isFetching: true, fetched: false}));
+                const response = await _getAllUsers(localStorage.getItem(tokenKey))
+                return response.message
+            } catch (e) {
+                console.log(e);
+                return false
+            }
+        };
+        fetchDonations().then(res =>{
+            if (res === false){
+                setUsers((users) => ({list: users.list, isFetching: false, fetched: false}));
+            } else{
+                setUsers({list: [...res], isFetching: true, fetched: true});
+            }
+        })
+    }, []);
 
     return (
         <Row>
@@ -29,7 +46,7 @@ const UsersAdmin = () => {
                     </InputGroup>
                     <Container className="list-scroll list-height-large">
                         <ListGroup variant="flush">
-                            {users != null && users.map((user)=>(
+                            {users.fetched && users.list.map((user)=>(
                                 <ListGroup.Item key={user.id} action>{showUsers(user)}</ListGroup.Item>
                             ))}
                         </ListGroup>
