@@ -9,7 +9,7 @@ import ShowPhone from "./ShowPhone";
 import {_logoutUser} from "../../api/auth";
 import AlertMessage from "../AlertMessage";
 import {CPF, PF, showDonations} from "../../utilities/HelperFunctions";
-import {tokenKey} from "../../utilities/apiHelpers";
+import {resetToken, tokenKey} from "../../utilities/apiHelpers";
 import ConfirmMessage from "../ConfirmMessage";
 import {_getDonationsByUser} from "../../api/donations";
 
@@ -24,6 +24,9 @@ function Profile({handleSetUser}) {
             try {
                 setDonations(donations => ({list: donations.list, isFetching: true, fetched: false}));
                 const response = await _getDonationsByUser(localStorage.getItem(tokenKey))
+                if (response.message === "Unauthenticated."){
+                    resetToken(navigate)
+                }
                 return response.message
             } catch (e) {
                 console.log(e);
@@ -57,8 +60,7 @@ function Profile({handleSetUser}) {
             message: message,
             variant: variant,
             title: title,
-            buttonText1: button,
-            buttonText2: null,
+            buttonText: button,
         })
         setShowMessage(true);
     }

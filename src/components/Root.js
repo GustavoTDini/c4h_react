@@ -1,7 +1,7 @@
 import Login from "./ProfileComponents/Login";
 import {Route, Routes} from "react-router";
 import Home from "./Home";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter} from "react-router-dom";
 import About from "./About";
 import Header from "./HeaderComponents/Header";
@@ -15,14 +15,19 @@ import Admin from "./AdminComponents/Admin";
 import Blogs from "./BlogComponents/Blogs";
 import AddBlog from "./AdminComponents/AddBlog";
 import BlogDetail from "./BlogComponents/BlogDetail";
+import {tokenKey} from "../utilities/apiHelpers";
 
 
 function Root() {
-    const [user, setUser] = useState(false)
+    const [user, setUser] = useState(localStorage.getItem(tokenKey)!== null)
 
     function handleSetUser(logged) {
         setUser(logged)
     }
+
+    useEffect(()=>{
+        setUser(localStorage.getItem(tokenKey)!== null)
+    })
 
     return(
         <React.StrictMode>

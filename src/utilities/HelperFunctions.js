@@ -65,7 +65,7 @@ function addZero(number){
 
 function showDate(date){
     let jsDate = new Date(date)
-    return jsDate.getDate() + " de " + meses[jsDate.getMonth()-1].nome + " de " + jsDate.getFullYear()
+    return jsDate.getDate() + " de " + meses[jsDate.getMonth()].nome + " de " + jsDate.getFullYear()
 }
 
 export function showUsers(user){
@@ -80,6 +80,10 @@ export function showUsers(user){
 
 export function showDonations(donation){
     return ("Doação de " + realNotation.format(donation.valor) + " realizada em " + showDate(donation.created_at))
+}
+
+export function showSignatures(signature){
+    return ("Programada doação de " + realNotation.format(signature.valor) + " no dia " + signature.dia)
 }
 
 export function verifyCPF(cpf){

@@ -3,11 +3,16 @@ import {PF} from "./HelperFunctions";
 import {headers} from "../api/c4hAPI";
 
 export const tokenKey = 'pdmig_token'
-export const loggedKey = 'isLogged'
 
 export function setBearerToken(token){
     headers.Authorization = "Bearer " + token
     return headers;
+}
+
+export function resetToken(navigate){
+    localStorage.clear(tokenKey)
+    navigate("/")
+    window.location.reload(false)
 }
 
 export function formatUser(login, email, codigo, senha, tipo) {

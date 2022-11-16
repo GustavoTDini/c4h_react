@@ -1,4 +1,4 @@
-import {API, headers} from "./c4hAPI";
+import {API} from "./c4hAPI";
 import {setBearerToken} from "../utilities/apiHelpers";
 
 export const _getAllDonations = async (token) =>{
@@ -11,8 +11,6 @@ export const _getAllDonations = async (token) =>{
 
 export const _getDonationsByMonth = async (token, mes, ano) => {
     let headers = setBearerToken(token);
-    console.log(mes)
-    console.log(ano)
     return fetch(`${API}/api/doacoes/mes/${mes}&${ano}`, {
         method: 'GET',
         headers,
@@ -27,7 +25,8 @@ export const _getDonationsByUser = async (token) => {
     }).then(res => res.json())
 }
 
-export const _addDonation = async (valor) => {
+export const _addDonation = async (token, valor) => {
+    let headers = setBearerToken(token);
     return fetch(`${API}/api/doacoes`, {
         headers,
         method: 'POST',

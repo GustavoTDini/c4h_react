@@ -9,7 +9,6 @@ export const _getAllUsers = async (token) =>{
     }).then(res => res.json())
 }
 
-
 export const _verifyUserByColumn = async (value, column) => {
     return await fetch(`${API}/api/usuario/${column}/${value}`, {
         method: 'GET',

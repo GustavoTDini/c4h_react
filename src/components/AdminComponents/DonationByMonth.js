@@ -5,7 +5,7 @@ import {_getDonationsByMonth} from "../../api/donations";
 import {tokenKey} from "../../utilities/apiHelpers";
 import {anos, meses, realNotation} from "../../utilities/HelperFunctions";
 
-const DonationByMonth = () => {
+const DonationByMonth = ({updateList}) => {
     const [selectedDonations, setSelectedDonations] = useState({list: [], isFetching: false, fetched: false});
     const [ano, setAno] = useState(anos[0])
     const [mes, setMes] = useState(meses[0].numero)
@@ -16,8 +16,6 @@ const DonationByMonth = () => {
     const getDonations = () => {
         const fetchDonations = async () => {
             try {
-                console.log(mes)
-                console.log(ano)
                 setSelectedDonations(selectedDonations => ({list: selectedDonations.list, isFetching: true, fetched: false}));
                 const response = await _getDonationsByMonth(localStorage.getItem(tokenKey), mes, ano)
                 return response.message
@@ -30,19 +28,20 @@ const DonationByMonth = () => {
             if (res === false){
                 setSelectedDonations((selectedDonations) => ({list: selectedDonations.list, isFetching: false, fetched: false}));
             } else{
-                setSelectedDonations({list: [...res], isFetching: true, fetched: true});
-                if (selectedDonations.list.length > 0){
-                    console.log("if")
-                    setTotalDonations(selectedDonations.list.length)
+                setSelectedDonations({list: [...res], isFetching: false, fetched: false});
+                if (res.length > 0){
+                    setTotalDonations(res.length)
                     let totalSum = 0
-                    for (let i = 0; i < selectedDonations.list.length; i++){
-                        console.log(selectedDonations.list[i])
-                        totalSum += selectedDonations.list[i].valor
+                    for (let i = 0; i < res.length; i++){
+                        totalSum += res[i].valor
                     }
                     setTotal(totalSum)
-                    setMedia(totalSum/selectedDonations.list.length)
+                    setMedia(totalSum/res.length)
                 }
+                updateList(res);
             }
+            setSelectedDonations(selectedDonations => ({list: [...selectedDonations.list], isFetching: false, fetched: true}));
+
         })
     }
 
@@ -84,7 +83,7 @@ const DonationByMonth = () => {
                     </InputGroup>
                 </Stack>
                 {(selectedDonations.fetched && selectedDonations.list.length === 0) &&
-                    <h4 className="blue-text text-center">{"Não houve doação em " + meses[mes-1].nome + " de " + ano}</h4>}
+                    <h4 className="blue-text text-center">Não houveram doações em {meses[mes-1].nome} de {ano}</h4>}
                 {(selectedDonations.fetched && selectedDonations.list.length > 0) &&
                     <Stack>
                         <h4 className="blue-text text-center">Em {meses[mes-1].nome} de {ano}, foram doados no total {realNotation.format(total)}</h4>

@@ -16,7 +16,7 @@ function AlertMessage({message, show, handleButton}) {
                 <hr />
                 <div className="d-flex justify-content-end">
                     <Button onClick={handleButton} variant="outline-success" className="mx-2">
-                        {message.buttonText1}
+                        {message.buttonText}
                     </Button>
                 </div>
             </Alert>

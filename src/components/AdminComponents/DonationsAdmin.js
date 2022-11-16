@@ -4,47 +4,39 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {_getAllDonations} from "../../api/donations";
 import {tokenKey} from "../../utilities/apiHelpers";
-import {anos, meses, showDonations} from "../../utilities/HelperFunctions";
-import DonationByMonth from "../ProfileComponents/DonationByMonth";
+import {showDonations} from "../../utilities/HelperFunctions";
+import DonationByMonth from "./DonationByMonth";
 
 const DonationsAdmin = () => {
     const [donations, setDonations] = useState({list: [], isFetching: false, fetched: false});
 
     useEffect(() => {
-        const fetchDonations = async () => {
-            try {
-                setDonations(donations => ({list: donations.list, isFetching: true, fetched: false}));
-                const response = await _getAllDonations(localStorage.getItem(tokenKey))
-                return response.message
-            } catch (e) {
-                console.log(e);
-                return false
-            }
-        };
+        setDonationsList()
+    },[]);
+
+    const fetchDonations = async () => {
+        try {
+            setDonations(donations => ({list: donations.list, isFetching: true, fetched: false}));
+            const response = await _getAllDonations(localStorage.getItem(tokenKey))
+            return response.message
+        } catch (e) {
+            console.log(e);
+            return false
+        }
+    };
+
+    const setDonationsList = () =>{
         fetchDonations().then(res =>{
             if (res === false){
                 setDonations((donations) => ({list: donations.list, isFetching: false, fetched: false}));
             } else{
-                setDonations({list: [...res], isFetching: true, fetched: true});
+                setDonations({list: [...res], isFetching: false, fetched: true});
             }
         })
-    }, []);
-
-    const [ano, setAno] = useState(null)
-    const [mes, setMes] = useState(null)
-
-    useState(()=>{
-        setAno(anos[0])
-        setMes(meses[0].nome)
-    })
-
-    const selectMes = (e) =>{
-        console.log(e)
-        setMes(e)
     }
 
-    const selectAno = (e) =>{
-        setAno(e)
+    const updateList = (newList) => {
+        setDonations({list: [...newList], isFetching: false, fetched: true});
     }
 
     return(
@@ -60,15 +52,12 @@ const DonationsAdmin = () => {
                             ))}
                         </ListGroup>
                     </Container>
-                    <Button className="w-100">Verificar Doação</Button>
+                    <Button className="w-100" onClick={()=>setDonationsList()}>Ver todas as Doações</Button>
                 </Stack>
             </Col>
-            <DonationByMonth/>
+            <DonationByMonth updateList = {updateList}/>
         </Row>
-    <Row className="justify-content-end">
         <DonationChart/>
-    </Row>
-
 </Container>
 
 
