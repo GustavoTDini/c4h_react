@@ -2,6 +2,7 @@ import {Button, Col, Container, Form, Row, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useState} from "react";
 import AddAddress from "./AddAdress";
+import AddressCard from "./AddressCard";
 
 function ShowAddress() {
     const [showAddress, setShowAddress] = useState(false);
@@ -19,12 +20,13 @@ function ShowAddress() {
                 </Stack>
             </Col>
         </Row>
-        <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
+        <Row className="mt-2 justify-content-start card-scroll" style={{height: "250px"}}>
+            <Stack direction="horizontal">
+                <AddressCard/>
+            </Stack>
         </Row>
         <AddAddress show={showAddress} handleClose={handleCloseAddress}/>
     </Container>
-
-
     );
 }
 

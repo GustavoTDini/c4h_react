@@ -25,6 +25,15 @@ export const _getUserById = async (id) => {
         .then(res => res.message);
 }
 
+export const _getCurrentLoggedUser = async (token) => {
+    let headers = setBearerToken(token);
+    return fetch(`${API}/api/usuario_logged`, {
+        method: 'GET',
+        headers,
+    }).then(res => res.json())
+        .then(res => res.message);
+}
+
 
 
 

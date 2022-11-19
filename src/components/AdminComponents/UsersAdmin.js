@@ -1,36 +1,40 @@
-import {Button, Col, Container, FloatingLabel, Form, Image, InputGroup, ListGroup, Row, Stack} from "react-bootstrap";
+import {Button, Col, Form, Image, InputGroup, Row, Stack} from "react-bootstrap";
 import searchIcon from "../../res/search.svg";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {_getAllUsers} from "../../api/users";
-import {showUsers} from "../../utilities/HelperFunctions";
-import ShowAddress from "../ProfileComponents/ShowAddress";
-import ShowPhone from "../ProfileComponents/ShowPhone";
 import {tokenKey} from "../../utilities/apiHelpers";
+import UsersList from "../ListsComponents/UsersList";
+import UserDetails from "../ProfileComponents/UserDetails";
 
 const UsersAdmin = () => {
     const [users, setUsers] = useState({list: [], isFetching: false, fetched: false});
     const [selectedUser, setSelectedUser] = useState(1)
 
     useEffect(() => {
-        const fetchDonations = async () => {
-            try {
-                setUsers(users => ({list: users.list, isFetching: true, fetched: false}));
-                const response = await _getAllUsers(localStorage.getItem(tokenKey))
-                return response.message
-            } catch (e) {
-                console.log(e);
-                return false
-            }
-        };
-        fetchDonations().then(res =>{
-            if (res === false){
+        SetUsersList(fetchUsers);
+    }, []);
+
+    const fetchUsers = async () => {
+        try {
+            setUsers(users => ({list: users.list, isFetching: true, fetched: false}));
+            const response = await _getAllUsers(localStorage.getItem(tokenKey))
+            return response.message
+        } catch (e) {
+            console.log(e);
+            return false
+        }
+    };
+
+    function SetUsersList(fetchUsers) {
+        fetchUsers().then(res => {
+            if (res === false) {
                 setUsers((users) => ({list: users.list, isFetching: false, fetched: false}));
-            } else{
+            } else {
                 setUsers({list: [...res], isFetching: true, fetched: true});
             }
         })
-    }, []);
+    }
 
     return (
         <Row>
@@ -44,64 +48,11 @@ const UsersAdmin = () => {
                             Buscar
                         </Button>
                     </InputGroup>
-                    <Container className="list-scroll list-height-large">
-                        <ListGroup variant="flush">
-                            {users.fetched && users.list.map((user)=>(
-                                <ListGroup.Item key={user.id} action>{showUsers(user)}</ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Container>
-                    <Stack direction="horizontal" gap={2}>
-                        <Button className="w-75">Alterar</Button>
-                        <Button className="w-75">Apagar</Button>
-                    </Stack>
+                    <UsersList users={users}/>
             </Stack>
             </Col>
             <Col md={6}>
-                {
-                    selectedUser!== null &&
-                    <Stack gap={2}>
-                        <FloatingLabel controlId="login" label="Login">
-                            <Form.Control type="text" />
-                        </FloatingLabel>
-                        {/*<FloatingLabel controlId="code" label={selectedUser.cpf !== null?"CPF": "CNPJ"}>*/}
-                        {/*    <Form.Control type="text"/>*/}
-                        {/*</FloatingLabel>*/}
-                        <FloatingLabel controlId="name" label="Nome">
-                            <Form.Control type="text"/>
-                        </FloatingLabel>
-                        <FloatingLabel controlId="email" label="E-mail">
-                            <Form.Control type="email"/>
-                        </FloatingLabel>
-                        <FloatingLabel controlId="url" label="URL">
-                            <Form.Control type="text"/>
-                        </FloatingLabel>
-                        {/*{selectedUser.cpf !== null?<FloatingLabel controlId="url" label="Date de Nascimento">*/}
-                        {/*    <Form.Control type="date"/>*/}
-                        {/*</FloatingLabel>:<div/>}*/}
-                        <ShowAddress/>
-                        <ShowPhone/>
-                        <Form.Check
-                            type="switch"
-                            id="switch-administrador"
-                            label="Administrador"
-                            size="lg"/>
-                        <Form.Check
-                            type="switch"
-                            id="switch-colaborador"
-                            label="Colaborador"
-                            size="lg"/>
-                        <Form.Check
-                            type="switch"
-                            id="switch-Voluntário"
-                            label="Voluntário"
-                            size="lg"/>
-                        <Button className="w-100">Adicionar Foto de Colaborador</Button>
-                    </Stack>
-
-
-                }
-
+                <UserDetails admin={true} user={selectedUser}/>
             </Col>
 
         </Row>

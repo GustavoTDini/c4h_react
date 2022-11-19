@@ -1,11 +1,11 @@
-import {Button, Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, Row, Stack} from "react-bootstrap";
 import DonationChart from "./DonationChart";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {_getAllDonations} from "../../api/donations";
 import {tokenKey} from "../../utilities/apiHelpers";
-import {showDonations} from "../../utilities/HelperFunctions";
 import DonationByMonth from "./DonationByMonth";
+import DonationsList from "../ListsComponents/DonationsList";
 
 const DonationsAdmin = () => {
     const [donations, setDonations] = useState({list: [], isFetching: false, fetched: false});
@@ -45,13 +45,7 @@ const DonationsAdmin = () => {
             <Col md={8}>
                 <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
                     <h2 className="blue-text mt-3">Doações</h2>
-                    <Container className="list-scroll list-height-large">
-                        <ListGroup variant="flush">
-                            {donations.fetched && donations.list.map((donation)=>(
-                                <ListGroup.Item key={donation.id} action>{showDonations(donation)}</ListGroup.Item>
-                            ))}
-                        </ListGroup>
-                    </Container>
+                    <DonationsList donations={donations}/>
                     <Button className="w-100" onClick={()=>setDonationsList()}>Ver todas as Doações</Button>
                 </Stack>
             </Col>

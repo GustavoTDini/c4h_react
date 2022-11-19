@@ -2,7 +2,7 @@ import {Button, Col, Container, FloatingLabel, Form, Row, Stack} from "react-boo
 import {useState} from "react";
 import {CNPJ, CPF, PF, PJ, verifyCNPJ, verifyCPF} from "../../utilities/HelperFunctions";
 import {_verifyUserByColumn} from "../../api/users";
-import AlertMessage from "../AlertMessage";
+import AlertMessage from "../AlertsComponents/AlertMessage";
 import {_register} from "../../api/auth";
 
 function Register() {

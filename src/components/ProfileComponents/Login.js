@@ -5,9 +5,11 @@ import {_loginUser} from "../../api/auth";
 import * as React from "react";
 import {useState} from "react";
 import {tokenKey} from "../../utilities/apiHelpers";
-import AlertMessage from "../AlertMessage";
+import AlertMessage from "../AlertsComponents/AlertMessage";
+import NavigateButton from "../ButtonsComponents/NavigateButton";
 
-function Login({handleSetUser}) {
+function Login() {
+    const navigate = useNavigate();
     const [login, setLogin] = useState("")
     const [password, setPassword] = useState("")
 
@@ -25,10 +27,6 @@ function Login({handleSetUser}) {
         setShowMessage(true);
     }
 
-    const navigate = useNavigate();
-    const handleClickRegister = () => {
-        navigate("/register")
-    }
 
     const handleClickLogin = async () => {
         if (login === "" || password === ""){
@@ -40,8 +38,8 @@ function Login({handleSetUser}) {
                     handleShowMessage("Login ou Senha estão incorretos!", "Atenção", "OK", 'warning')
                 } else if (res.status === 202){
                     localStorage.setItem(tokenKey, res.token)
-                    handleSetUser(true)
                     navigate("/")
+                    window.location.reload(false)
                 } else {
                     handleShowMessage("Algo deu Errado, tente novamente!", "Atenção", "OK", 'warning')
                 }
@@ -66,7 +64,10 @@ function Login({handleSetUser}) {
                                 <Form.Control type="password" value={password} onChange={event => setPassword(event.target.value)}/>
                             </FloatingLabel>
                             <Button onClick={()=>[handleClickLogin()]}>Login</Button>
-                            <Button onClick={()=>{handleClickRegister()}}>Cadastro</Button>
+                            <NavigateButton
+                                label={"Cadastro"}
+                                navigateTo={"/register"}
+                            />
                         </Stack>
                     </Form>
                 </Col>

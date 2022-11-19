@@ -1,12 +1,13 @@
-import {Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
+import {Col, Container, Row, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {tokenKey} from "../../utilities/apiHelpers";
 import {_getAllSignatures} from "../../api/signature";
-import {realNotation, showSignatures} from "../../utilities/HelperFunctions";
+import {realNotation} from "../../utilities/HelperFunctions";
+import SignaturesList from "../ListsComponents/SignaturesList";
 
 const SignaturesAdmin = () => {
-    const [signature, setSignatures] = useState({list: [], isFetching: false, fetched: false});
+    const [signatures, setSignatures] = useState({list: [], isFetching: false, fetched: false});
     const [valorTotal, setValorTotal] = useState(0);
     const [total, setTotal] = useState(0);
 
@@ -49,13 +50,7 @@ const SignaturesAdmin = () => {
                 <Col md={8}>
                     <Stack className="w-100 list-height-large p-0 mb-5" gap={4}>
                         <h2 className="blue-text mt-3">Doações Mensais Ativas</h2>
-                        <Container className="list-scroll list-height-large">
-                            <ListGroup variant="flush">
-                                {signature.fetched && signature.list.map((signature)=>(
-                                    <ListGroup.Item key={signature.id} action>{showSignatures(signature)}</ListGroup.Item>
-                                ))}
-                            </ListGroup>
-                        </Container>
+                        <SignaturesList signatures={signatures}/>
                     </Stack>
                 </Col>
                 <Col md={4}>

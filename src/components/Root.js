@@ -21,10 +21,6 @@ import {tokenKey} from "../utilities/apiHelpers";
 function Root() {
     const [user, setUser] = useState(localStorage.getItem(tokenKey)!== null)
 
-    function handleSetUser(logged) {
-        setUser(logged)
-    }
-
     useEffect(()=>{
         setUser(localStorage.getItem(tokenKey)!== null)
     })
@@ -32,7 +28,7 @@ function Root() {
     return(
         <React.StrictMode>
              <BrowserRouter>
-                 <Header user={user}/>
+                 <Header/>
                  <Routes>
                      <Route
                          path="/"
@@ -41,7 +37,7 @@ function Root() {
                      />
                      <Route
                          path="/login"
-                         element={<Login handleSetUser={handleSetUser} />}
+                         element={<Login/>}
                          errorElement={<Error/>}
                      />
                      <Route
@@ -81,7 +77,7 @@ function Root() {
                      />
                      <Route
                          path="/profile"
-                         element={<Profile handleSetUser={handleSetUser} />}
+                         element={<Profile/>}
                          errorElement={<Error/>}
                      />
                      <Route

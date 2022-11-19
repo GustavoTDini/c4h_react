@@ -1,44 +1,15 @@
-import {Button, Col, Container, Form, Row, Stack} from "react-bootstrap";
+import {Col, Container, Form, Row, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useState} from "react";
-import {realNotation} from "../../utilities/HelperFunctions";
-import {_addSignature} from "../../api/signature";
-import {tokenKey} from "../../utilities/apiHelpers";
-import ConfirmMessage from "../ConfirmMessage";
-import AlertMessage from "../AlertMessage";
+import {ASSINATURA, realNotation} from "../../utilities/HelperFunctions";
+import PaymentButton from "../ButtonsComponents/PaymentButton";
 
 function Signature() {
     const [day, setDay] = useState(1)
     const [value, setValue] = useState(0)
-    const [showConfirmDonation, setShowConfirmDonation] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
-    const [alertMessage, setAlertMessage] = useState("");
+    const [message, setMessage] = useState('')
 
     const diasAssinatura = [1,7,14,21,28];
-
-    const handleShowMessage = (message, title, button, variant) => {
-        setAlertMessage({
-            message: message,
-            variant: variant,
-            title: title,
-            buttonText: button,
-        })
-        setShowMessage(true);
-    }
-
-    const handleConfirmSignature = async () => {
-        if (value > 0){
-            setShowConfirmDonation(true)
-        } else{
-            handleShowMessage("Por Favor insira um valor maior que zero!", "Ops", "Tente novamente", "warning")
-        }
-    }
-
-    const handleAddSignature = async () => {
-        await _addSignature(localStorage.getItem(tokenKey), value, day)
-        setShowConfirmDonation(false)
-        handleShowMessage("Usuário encaminhado para Sistema de pagamento", "Obrigado", "Retornar", "success")
-    }
 
     return(
         < Container className="mt-5">
@@ -52,7 +23,10 @@ function Signature() {
                                 max="100"
                                 value={value}
                                 step={0.25}
-                                onChange={(e) => setValue(e.target.value)}/>
+                                onChange={(e) => {
+                                    setValue(e.target.value)
+                                    setMessage(`Confirma a doação Mensal de ${realNotation.format(e.target.value)}, sempre no dia ${day}?`)
+                                }}/>
                             <h3 className="blue-text text-center large-text">{realNotation.format(value)}</h3>
                             <Form.Label className="blue-text text-center fw-bold">Selecione o dia de pagamento da doação mensal</Form.Label>
                             <Form.Select value={day} onChange={e => setDay(e.target.value)}>
@@ -60,26 +34,17 @@ function Signature() {
                                     <option value={dia} key={dia}>{dia}</option>
                                 ))}
                             </Form.Select>
-                            <Button onClick={event => handleConfirmSignature()}>Programar Doação Mensal</Button>
+                            <PaymentButton
+                            label={"Programar Doação Mensal"}
+                            message={message}
+                            tipo={ASSINATURA}
+                            value={value}
+                            day={day}
+                            />
                         </Stack>
                     </Form>
                 </Col>
             </Row>
-            <ConfirmMessage
-                message={{
-                    message: `Confirma a doação Mensal de ${realNotation.format(value)}, sempre no dia ${day}?`,
-                    variant: "success",
-                    title: "Confirme",
-                }}
-                show={showConfirmDonation}
-                handleCancel={()=>setShowConfirmDonation(false)}
-                handleConfirm={()=>handleAddSignature()}
-            />
-            <AlertMessage
-                message={alertMessage}
-                show={showMessage}
-                handleButton={()=>setShowMessage(false)}
-            />
         </Container>
     );
 }

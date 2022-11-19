@@ -1,16 +1,11 @@
-import {Button, Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
+import {Col, Container, ListGroup, Row, Stack} from "react-bootstrap";
 import * as React from "react";
 import BlogListItem from "./BlogListItem";
 import {blog} from "../../utilities/HelperFunctions";
 import BlogMiniCard from "./BlogMiniCard";
-import {useNavigate} from "react-router";
+import NavigateButton from "../ButtonsComponents/NavigateButton";
 
 const BlogAdmin = () =>  {
-    const navigate = useNavigate();
-
-    const handleClickAddBLog = ()=>{
-        navigate("/addBlog")
-    }
 
     return (
         < Container className="mt-5">
@@ -37,7 +32,10 @@ const BlogAdmin = () =>  {
                 </Col>
             </Row>
             <Col md="3">
-                <Button className="w-100 mb-3" size="lg" onClick={()=>handleClickAddBLog()}>Adicionar Blog</Button>
+                <NavigateButton
+                label={"Adicionar Blog"}
+                navigateTo={"/addBlog"}
+                />
             </Col>
         </Container>
     )

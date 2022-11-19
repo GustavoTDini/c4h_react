@@ -2,6 +2,7 @@ import {Button, Col, Container, Form, Row, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useState} from "react";
 import AddPhone from "./AddPhone";
+import PhoneCard from "./PhoneCard";
 
 function ShowPhone() {
     const [showPhone, setShowPhone] = useState(false);
@@ -19,7 +20,10 @@ function ShowPhone() {
                     </Stack>
                 </Col>
             </Row>
-            <Row className="mt-2 justify-content-start" style={{height: "200px"}}>
+            <Row className="mt-2 justify-content-start card-scroll" style={{height: "250px"}}>
+                <Stack direction="horizontal">
+                    <PhoneCard/>
+                </Stack>
             </Row>
             <AddPhone show={showPhone} handleClose={handleClosePhone}/>
         </Container>

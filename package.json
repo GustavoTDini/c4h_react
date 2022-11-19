@@ -33,6 +33,7 @@
     "slick-carousel": "^1.8.1",
     "suneditor": "^2.44.3",
     "suneditor-react": "^3.4.1",
+    "usehooks-ts": "^2.9.1",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
   },

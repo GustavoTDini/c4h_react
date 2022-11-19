@@ -11,7 +11,7 @@ export const _getAllDonations = async (token) =>{
 
 export const _getDonationsByMonth = async (token, mes, ano) => {
     let headers = setBearerToken(token);
-    return fetch(`${API}/api/doacoes/mes/${mes}&${ano}`, {
+    return fetch(`${API}/api/doacoes_mes/${mes}&${ano}`, {
         method: 'GET',
         headers,
     }).then(res => res.json())
@@ -19,7 +19,7 @@ export const _getDonationsByMonth = async (token, mes, ano) => {
 
 export const _getDonationsByUser = async (token) => {
     let headers = setBearerToken(token);
-    return fetch(`${API}/api/doacoes/usuario`, {
+    return fetch(`${API}/api/doacoes_usuario`, {
         method: 'GET',
         headers,
     }).then(res => res.json())

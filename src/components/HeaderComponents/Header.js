@@ -1,12 +1,18 @@
-import {Container, Image, Nav, Navbar, NavDropdown, Offcanvas} from "react-bootstrap";
+import {Container, Image, Navbar, Offcanvas} from "react-bootstrap";
 import logoImage from "../../res/logo.png";
 import HeaderButtons from "./HeaderButtons";
 import OffScreenButtons from "./OffScreenButtons";
 import SocialMediaHeader from "./SocialMediaHeader";
+import {useEffect, useState} from "react";
+import {tokenKey} from "../../utilities/apiHelpers";
 
-function Header({user}) {
-
+function Header() {
     const offCanvas = "offCanvas"
+    const [user, setUser] = useState(false);
+
+    useEffect(()=>{
+        setUser(localStorage.getItem(tokenKey)!== null)
+    },[])
 
     return (
         <Container>

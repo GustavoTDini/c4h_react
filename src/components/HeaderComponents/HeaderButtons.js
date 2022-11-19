@@ -2,6 +2,7 @@ import NavButton from "./NavButton";
 import {Container, Stack} from "react-bootstrap";
 
 function HeaderButtons({user}) {
+
     const className = "border-0 blue-text fw-bold"
     const buttonClass = className + " nav-button"
     const loginClassName = buttonClass + " yellow-background login-button"

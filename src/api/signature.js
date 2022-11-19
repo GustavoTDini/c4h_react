@@ -11,7 +11,7 @@ export const _getAllSignatures = async (token) =>{
 
 export const _getSignatureByUser = async (token) => {
     let headers = setBearerToken(token);
-    return fetch(`${API}/api/doacoesMensais/usuario`, {
+    return fetch(`${API}/api/doacoesMensais_usuario`, {
         method: 'GET',
         headers,
     }).then(res => res.json())

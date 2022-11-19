@@ -1,7 +1,7 @@
 import {Button, FloatingLabel, Form, Modal, Stack} from "react-bootstrap";
 
 
-function AddPhone({show, handleClose}){
+function AddSocialMedia({show, handleClose}){
 
 
     return(
@@ -11,21 +11,17 @@ function AddPhone({show, handleClose}){
             backdrop="static"
             keyboard={false}>
             <Modal.Header>
-                <Modal.Title>Adicionar Telefone</Modal.Title>
+                <Modal.Title>Adicionar Mídia Social</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={2}>
                     <FloatingLabel controlId="tipo" label="Tipo">
                         <Form.Control type="text" />
                     </FloatingLabel>
-                    <FloatingLabel controlId="ddd" label="DDD">
-                        <Form.Control type="text"/>
-                    </FloatingLabel>
-                    <FloatingLabel controlId="numero" label="Número">
+                    <FloatingLabel controlId="ddd" label="URL">
                         <Form.Control type="text"/>
                     </FloatingLabel>
                 </Stack>
-
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
@@ -39,4 +35,4 @@ function AddPhone({show, handleClose}){
     )
 }
 
-export default AddPhone
+export default AddSocialMedia

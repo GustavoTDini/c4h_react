@@ -4,6 +4,8 @@ export const CPF = "CPF";
 export const CNPJ = "CNPJ"
 export const PF = "PF"
 export const PJ = "PJ"
+export const DOACAO = "DOACAO"
+export const ASSINATURA = "ASSINATURA"
 
 
 export const meses = [
