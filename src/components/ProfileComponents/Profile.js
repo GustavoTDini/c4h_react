@@ -1,4 +1,4 @@
-import {Button, Col, Container, Form, Image, Row, Stack} from "react-bootstrap";
+import {Button, Col, Container, Image, Row, Stack} from "react-bootstrap";
 import medal from "../../res/certificado.png";
 import * as React from "react";
 import {useEffect, useState} from "react";
@@ -84,7 +84,9 @@ function Profile() {
             </Row>
             <Row className="mt-5 justify-content-lg-start">
                 <Col md={8}>
-                    <UserDetails admin={false} user={currentUser}/>
+                    <UserDetails
+                        adminView={false}
+                        user={currentUser}/>
                 </Col>
                 <Col md={4}>
                     {(currentUser!== null && currentUser.doador)?
@@ -103,18 +105,6 @@ function Profile() {
                         <h3 className="text-center">Assinatura programada</h3>
                         <Button className="w-100">Cancelar Assinatura</Button>
                     </div>:<div/>}
-                    <Stack className="align-items-center">
-                        <Form.Check
-                            type="switch"
-                            id="switch-Voluntário"
-                            label="Voluntário"
-                            onClick={()=> setVoluntario(!voluntario)}
-                            value={voluntario}
-                            size="lg"/>
-                        {(currentUser!== null && currentUser.voluntario)?<div>
-                            <h3 className="text-center mt-2">Beleza, bora ajudar!</h3>
-                        </div>:<div/>}
-                    </Stack>
                 </Col>
             </Row>
             <Row className="mt-5 justify-content-start">

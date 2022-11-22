@@ -2,14 +2,14 @@ import {Button, Col, Form, Image, InputGroup, Row, Stack} from "react-bootstrap"
 import searchIcon from "../../res/search.svg";
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {_getAllUsers} from "../../api/users";
+import {_getAllUsers, _getUserById} from "../../api/users";
 import {tokenKey} from "../../utilities/apiHelpers";
 import UsersList from "../ListsComponents/UsersList";
 import UserDetails from "../ProfileComponents/UserDetails";
 
 const UsersAdmin = () => {
     const [users, setUsers] = useState({list: [], isFetching: false, fetched: false});
-    const [selectedUser, setSelectedUser] = useState(1)
+    const [selectedUser, setSelectedUser] = useState(null)
 
     useEffect(() => {
         SetUsersList(fetchUsers);
@@ -36,6 +36,15 @@ const UsersAdmin = () => {
         })
     }
 
+    const handleSelectUser = (id) =>{
+        const user = _getUserById(id, localStorage.getItem(tokenKey)).then(res=>{
+            setSelectedUser(res)
+            console.log(selectedUser)
+        })
+
+
+    }
+
     return (
         <Row>
             <h2 className="blue-text">Usuários</h2>
@@ -48,13 +57,14 @@ const UsersAdmin = () => {
                             Buscar
                         </Button>
                     </InputGroup>
-                    <UsersList users={users}/>
+                    <UsersList users={users} setUser={handleSelectUser}/>
             </Stack>
             </Col>
             <Col md={6}>
-                <UserDetails admin={true} user={selectedUser}/>
+                <UserDetails
+                    adminView={true}
+                    user={selectedUser}/>
             </Col>
-
         </Row>
 
 

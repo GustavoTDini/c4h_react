@@ -29,6 +29,15 @@ function Admin() {
                     <Tab eventKey="assinaturas" title="Assinaturas">
                         <SignaturesAdmin/>
                     </Tab>
+                    <Tab eventKey="enderecos" title="Endereços">
+                        <BlogAdmin/>
+                    </Tab>
+                    <Tab eventKey="contatos" title="Contatos">
+                        <BlogAdmin/>
+                    </Tab>
+                    <Tab eventKey="social" title="Redes Sociais">
+                        <BlogAdmin/>
+                    </Tab>
                     <Tab eventKey="blogs" title="Blogs">
                         <BlogAdmin/>
                     </Tab>

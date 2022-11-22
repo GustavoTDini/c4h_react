@@ -4,6 +4,8 @@ export const CPF = "CPF";
 export const CNPJ = "CNPJ"
 export const PF = "PF"
 export const PJ = "PJ"
+export const NOME = "Nome"
+export const RAZAO_SOCIAL = "Razão Social"
 export const DOACAO = "DOACAO"
 export const ASSINATURA = "ASSINATURA"
 
@@ -67,25 +69,29 @@ function addZero(number){
 
 function showDate(date){
     let jsDate = new Date(date)
-    return jsDate.getDate() + " de " + meses[jsDate.getMonth()].nome + " de " + jsDate.getFullYear()
+    return (`${jsDate.getDate()} de ${meses[jsDate.getMonth()].nome} de ${jsDate.getFullYear()}`)
 }
 
 export function showUsers(user){
     if (user.cpf !== null){
-        return(user.nome + " usuário PF " + user.login + " de CPF " + user.cpf)
+        return(`${user.nome} usuário PF ${user.login} de CPF ${user.cpf}`)
     } else if (user.vl_cnpj !== null){
-        return(user.razao_social +  " usuário PJ " + user.login + " de CNPJ " + user.cnpj)
+        return(`${user.razao_social} usuário PJ ${user.login} de CNPJ ${user.cnpj}`)
     } else{
         return ("Usuário com dados com problemas, verifique e corrija, por favor!")
     }
 }
 
 export function showDonations(donation){
-    return ("Doação de " + realNotation.format(donation.valor) + " realizada em " + showDate(donation.created_at))
+    return (`Doação de ${realNotation.format(donation.valor)} realizada em ${showDate(donation.created_at)}`)
 }
 
 export function showSignatures(signature){
-    return ("Programada doação de " + realNotation.format(signature.valor) + " no dia " + signature.dia)
+    return (`Programada doação de ${realNotation.format(signature.valor)} no dia ${signature.dia}`)
+}
+
+export function showAddress(address){
+    return (`${address.logradouro} nº: ${address.numero}, ${address.complemento}, ${address.cep} - ${address.bairro}, ${address.cidade} - ${address.estado}`)
 }
 
 export function verifyCPF(cpf){

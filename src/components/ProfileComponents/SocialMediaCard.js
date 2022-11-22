@@ -2,7 +2,7 @@ import {Button, Card, Container, Image} from "react-bootstrap";
 import * as React from "react";
 
 
-function SocialMediaCard(){
+function SocialMediaCard({socialMedia}){
 
 
     return(
@@ -11,13 +11,13 @@ function SocialMediaCard(){
                 <Card.Header>
                     <Container className="d-flex justify-content-between">
                         <Card.Title>
-                            Tipo de Midia Social
+                            {socialMedia.id_rede}
                         </Card.Title>
                         <Image thumbnail src="https://placekitten.com/g/50/50"/>
                     </Container>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Text>URL da Midia com link</Card.Text>
+                    <Card.Text><a href={socialMedia.url}>{socialMedia.url}</a></Card.Text>
                 </Card.Body>
                 <Card.Footer>
                     <Container className="d-flex justify-content-between">

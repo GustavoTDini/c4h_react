@@ -17,7 +17,8 @@ export const _verifyUserByColumn = async (value, column) => {
         .then(res => res.message);
 }
 
-export const _getUserById = async (id) => {
+export const _getUserById = async (id, token) => {
+    let headers = setBearerToken(token);
     return fetch(`${API}/api/usuario/${id}`, {
         method: 'GET',
         headers,
@@ -34,6 +35,27 @@ export const _getCurrentLoggedUser = async (token) => {
         .then(res => res.message);
 }
 
-
+export const _updateUser = async (token, id, login, cpf, nome, email, cnpj, razaoSocial, url, dataNascimento, admin, voluntario, colaborador, assinante, foto) => {
+    let headers = setBearerToken(token);
+    return fetch(`${API}/api/usuario/${id}`, {
+        method: 'PATCH',
+        headers,
+        body:JSON.stringify(
+            {
+                "login": login,
+                "cpf": cpf,
+                "nome": nome,
+                "cnpj": cnpj,
+                "razao_social": razaoSocial,
+                "url": url,
+                "dt_nascimento": dataNascimento,
+                "admin": admin,
+                "voluntario": voluntario,
+                "colaborador": colaborador,
+                "foto": foto
+            }
+        )
+    }).then(res => res.json())
+}
 
 

@@ -216,3 +216,9 @@ height: 150px;
   overflow-x: scroll;
   overflow-y: hidden;
 }
+
+.switch-size{
+  transform: scale(2) translateX(25%);
+  transform-style: initial;
+  align-self: self-start;
+}

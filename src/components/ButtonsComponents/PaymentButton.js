@@ -14,7 +14,7 @@ function PaymentButton({label, message, tipo, value, day}){
     const [showMessage, setShowMessage] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
 
-    const handleConfirmSignature = async () => {
+    const handleConfirmPayment = () => {
         if (value > 0){
             setShowConfirm(true)
         } else{
@@ -58,7 +58,7 @@ function PaymentButton({label, message, tipo, value, day}){
 
     return(
         <>
-            <Button size="lg" className="w-100" onClick={() => handleConfirmSignature()}>{label}</Button>
+            <Button size="lg" className="w-100" onClick={() => handleConfirmPayment()}>{label}</Button>
             <ConfirmMessage
                 message={{
                     message: message,
