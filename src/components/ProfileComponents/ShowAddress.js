@@ -1,4 +1,4 @@
-import {Accordion, Button, Container, Form, Stack} from "react-bootstrap";
+import {Accordion, Button, Container, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import AddAddress from "./AddAdress";
@@ -13,10 +13,17 @@ function ShowAddress({userId}) {
     const [addresses, setAddresses] = useState({list: [], isFetching: false, fetched: false});
 
     useEffect(() => {
-        setAddressesList(fetchAddresses)
+        refreshData()
     }, [userId]);
 
-    const handleCloseAddress = () => setShowAddress(false);
+    const refreshData = () =>{
+        setAddressesList(fetchAddresses)
+    }
+
+    const handleCloseAddress = () => {
+        setShowAddress(false);
+        refreshData()
+    }
     const handleShowAddress = () => setShowAddress(true);
 
     const fetchAddresses = async () => {
@@ -46,25 +53,31 @@ function ShowAddress({userId}) {
     }
 
     return(
-        <Container>
-        <Accordion defaultActiveKey="1" className="mt-5 justify-content-start">
+        <Container className="p-0">
+            <Accordion defaultActiveKey="1" className="justify-content-start">
             <Accordion.Item eventKey="0">
                 <Accordion.Header>
-                    <Stack className="justify-content-between" direction="horizontal">
-                        <Form.Label className="blue-text h4">Endereços:</Form.Label>
-                        <Button className="w-50" onClick={()=> handleShowAddress()}>Adicionar Endereço</Button>
-                    </Stack>
+                    <h2 className="blue-text h4">Endereços:</h2>
                 </Accordion.Header>
                 <Accordion.Body className="mt-2 justify-content-start card-scroll" style={{height: "300px"}}>
                     <Stack direction="horizontal" gap={2}>
+                        <Button className="w-50" onClick={()=> handleShowAddress()}>Adicionar Endereço</Button>
                         {addresses.fetched && addresses.list.map((address)=>(
-                            <AddressCard key={address.id} address={address}/>
+                            <AddressCard
+                                userId={userId}
+                                key={address.id}
+                                address={address}
+                                refreshData={()=>refreshData()}/>
                         ))}
                     </Stack>
                 </Accordion.Body>
             </Accordion.Item>
             </Accordion>
-            <AddAddress show={showAddress} handleClose={handleCloseAddress}/>
+            <AddAddress
+                show={showAddress}
+                handleClose={handleCloseAddress}
+                id={null}
+                userId={userId}/>
         </Container>
     );
 }

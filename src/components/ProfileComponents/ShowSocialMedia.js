@@ -1,4 +1,4 @@
-import {Accordion, Button, Container, Form, Stack} from "react-bootstrap";
+import {Accordion, Button, Container, Stack} from "react-bootstrap";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import AddSocialMedia from "./AddSocialMedia";
@@ -48,17 +48,15 @@ function ShowSocialMedia({userId}) {
     }
 
     return(
-        <Container>
-            <Accordion defaultActiveKey="1" className="mt-5 justify-content-start">
+        <Container className="p-0">
+            <Accordion defaultActiveKey="1" className="justify-content-start">
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>
-                        <Stack className="justify-content-between" direction="horizontal">
-                            <Form.Label className="blue-text h4">Mídias Sociais:</Form.Label>
-                            <Button className="w-50" onClick={()=> handleShowSocialMedia()}>Adicionar Mídia</Button>
-                        </Stack>
+                        <h2 className="blue-text h4">Mídias Sociais:</h2>
                     </Accordion.Header>
-                    <Accordion.Body className="mt-2 justify-content-start card-scroll" style={{height: "250px"}}>
+                    <Accordion.Body className="mt-2 justify-content-start card-scroll" style={{height: "280px"}}>
                         <Stack direction="horizontal">
+                            <Button className="w-50" onClick={()=> handleShowSocialMedia()}>Adicionar Mídia</Button>
                             {medias.fetched && medias.list.map((media)=>(
                                 <SocialMediaCard key={media.id} socialMedia={media}/>
                             ))}

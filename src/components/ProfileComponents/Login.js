@@ -22,7 +22,7 @@ function Login() {
             message: message,
             variant: variant,
             title: title,
-            buttonText1: button,
+            buttonText: button,
         })
         setShowMessage(true);
     }

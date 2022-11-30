@@ -69,7 +69,7 @@ function UserDetails({adminView, user}){
     return(
         <Stack gap={2}>
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <FloatingLabel controlId="login" label="Login">
                     <Form.Control type="text" value={login} onChange={event => {
                         setLogin(event.target.value)
@@ -77,14 +77,14 @@ function UserDetails({adminView, user}){
                     }}/>
                 </FloatingLabel>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <FloatingLabel controlId="code" label={code}>
                     {pessoa === PF?
                     <Form.Control type="text" disabled value={cpf}/>:
                         <Form.Control type="text" disabled value={cnpj}/>}
                 </FloatingLabel>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <FloatingLabel controlId="name" label={tipoNome}>
                     {pessoa === PF?
                         <Form.Control type="text" value={nome} onChange={event => {
@@ -97,7 +97,7 @@ function UserDetails({adminView, user}){
                         }}/>}
                 </FloatingLabel>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <FloatingLabel controlId="email" label="E-mail">
                     <Form.Control type="email" value={email} onChange={event => {
                         setEmail(event.target.value)
@@ -105,7 +105,7 @@ function UserDetails({adminView, user}){
                     }}/>
                 </FloatingLabel>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <FloatingLabel controlId="url" label="URL">
                     <Form.Control type="text" value={url} onChange={event => {
                         setUrl(event.target.value)
@@ -114,7 +114,7 @@ function UserDetails({adminView, user}){
                 </FloatingLabel>}
             {pessoa === PF?
                 user=== null?
-                    <Spinner animation="grow" variant="info"/>:
+                    !adminView && <Spinner animation="grow" variant="info"/>:
                     <FloatingLabel controlId="url" label="data_nascimento">
                         <Form.Control type="date" value={dataNascimento} onChange={event => {
                             setDataNascimento(event.target.value)
@@ -122,19 +122,16 @@ function UserDetails({adminView, user}){
                         }}/>
                     </FloatingLabel>:<div></div>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <ShowAddress userId={user.id}/>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <ShowPhone userId={user.id}/>}
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <ShowSocialMedia userId={user.id}/>}
-
-
-
             {user=== null?
-                <Spinner animation="grow" variant="info"/>:
+                !adminView && <Spinner animation="grow" variant="info"/>:
                 <Stack className="w-100 p-3 d-flex justify-content-start" direction="vertical" gap={4}>
                     <Stack className="w-100 d-flex justify-content-between h-100" direction="horizontal" gap={5}>
                         <Form.Check
@@ -168,7 +165,7 @@ function UserDetails({adminView, user}){
                             className="switch-size"
                             type="switch"
                             id="switch-doador"
-                            label="Doador       "
+                            label="Doador"
                             disabled
                             onClick={()=> {
                                 setDoador(!doador)
@@ -180,7 +177,7 @@ function UserDetails({adminView, user}){
                             className="switch-size"
                             type="switch"
                             id="switch-assinante"
-                            label="Assinante    "
+                            label="Assinante"
                             disabled
                             checked={assinante}/>}
                     {adminView &&
@@ -188,17 +185,17 @@ function UserDetails({adminView, user}){
                             className="switch-size"
                             type="switch"
                             id="switch-colaborador"
-                            label="Colaborador  "
+                            label="Colaborador"
                             onClick={()=> {
                                 setColaborador(!colaborador)
                                 setChanged(true)
                             }}
                             checked={colaborador}/>}
-                        {(colaborador && adminView) &&
-                            <Button className="w-100">Adicionar Foto de Colaborador</Button>
+                        {(colaborador && adminView)?
+                            <Button className="w-100">Adicionar Foto de Colaborador</Button>:
+                            <div></div>
                         }
                     </Stack>}
-
             {user !== null &&
                 <Stack className="w-100" direction="horizontal" gap={2}>
                     {adminView?

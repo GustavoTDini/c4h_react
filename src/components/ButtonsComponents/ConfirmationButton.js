@@ -4,12 +4,12 @@ import {useState} from "react";
 import ConfirmMessage from "../AlertsComponents/ConfirmMessage";
 
 
-function ConfirmationButton({label, message, variant, title, handleConfirm}){
+function ConfirmationButton({label, message, variant, title, handleConfirm, size}){
     const [showConfirm, setShowConfirm] = useState(false);
 
     return(
         <>
-            <Button size="lg" className="w-100" onClick={() => setShowConfirm(true)}>{label}</Button>
+            <Button size={size} onClick={() => setShowConfirm(true)}>{label}</Button>
             <ConfirmMessage
                 message={{
                     message: message,

@@ -60,11 +60,14 @@ function PaymentButton({label, message, tipo, value, day}){
         <>
             <Button size="lg" className="w-100" onClick={() => handleConfirmPayment()}>{label}</Button>
             <ConfirmMessage
+                className="w-100"
                 message={{
                     message: message,
                     variant: "success",
                     title: "Confirme",
                 }}
+
+                size={"lg"}
                 show={showConfirm}
                 handleCancel={()=>setShowConfirm(false)}
                 handleConfirm={()=>handleAddPayment()}

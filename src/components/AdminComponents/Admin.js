@@ -38,6 +38,9 @@ function Admin() {
                     <Tab eventKey="social" title="Redes Sociais">
                         <BlogAdmin/>
                     </Tab>
+                    <Tab eventKey="mensagens" title="Mensagens">
+                        <BlogAdmin/>
+                    </Tab>
                     <Tab eventKey="blogs" title="Blogs">
                         <BlogAdmin/>
                     </Tab>

@@ -111,12 +111,12 @@ function Profile() {
                 <Col md={{ span: 4, offset: 8 }} className="mt-2 mb-2">
                     <Stack direction={"horizontal"} gap={2}>
                         <LogoutButton/>
-                        {(currentUser!== null && currentUser.admin) &&
+                        {(currentUser!== null && currentUser.admin)?
                             <NavigateButton
                                 className="w-100"
                                 size={"lg"}
                                 label={"Administrador"}
-                                navigateTo={"/admin"}/>
+                                navigateTo={"/admin"}/>:<div></div>
                         }
                     </Stack>
                 </Col>
